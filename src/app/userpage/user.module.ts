@@ -12,7 +12,7 @@ import { UserRoutes } from './user.routing';
         RouterModule.forChild(UserRoutes),
         FormsModule
     ],
-    declarations: [UserComponent]
+    declarations: [ UserComponent ]
 })
 
 export class UserModule {}

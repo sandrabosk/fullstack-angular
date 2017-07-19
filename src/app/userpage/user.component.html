@@ -10,76 +10,80 @@
                         <h4 class="card-title">Edit Profile -
                             <small class="category">Complete your profile</small>
                         </h4>
-                        <form>
+                        <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
                             <div class="row">
-                                <div class="col-md-5">
+                                <!-- <div class="col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Company (disabled)</label>
                                         <input type="text" class="form-control" disabled>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
+                                </div> -->
+                                <!-- <div class="col-md-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Username</label>
-                                        <input type="text" class="form-control">
+                                        <label for="username-input">Username</label>
+                                        <input id="username-input" type="text" [(ngModel)]="formUsername" name="formUsername" class="form-control">
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                      <div class="form-group label-floating">
+                                          <label for="email-input">Email address</label>
+                                          <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label for="first-name-input" class="control-label">Fist Name</label>
+                                        <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Email address</label>
-                                        <input type="email" class="form-control">
+                                        <label for="last-name-input" class="control-label">Last Name</label>
+                                        <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Fist Name</label>
-                                        <input type="text" class="form-control">
+                                        <label for="dob-input">DOB</label>
+                                        <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">Last Name</label>
-                                        <input type="text" class="form-control">
+                                      <label>Gender</label>
+                                      <br><br>
+                                      <div class="radio" *ngFor="let gender of genders">
+                                        <label for="gender-input">
+                                          <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" [value]="gender.value">
+                                          {{ gender.display }}
+                                        </label>
+                                      </div>
+                                      <!-- <select [(ngModel)]="formGender" name="formGender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                      </select> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Adress</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group label-floating">
-                                        <label class="control-label">City</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Country</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Postal Code</label>
-                                        <input type="text" class="form-control">
+                                        <label for="profession-input" class="control-label">Profession</label>
+                                        <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>About Me</label>
+                                        <label>Fav Quote:</label>
                                         <div class="form-group label-floating">
-                                            <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea class="form-control" rows="5"></textarea>
+                                            <label for="fav-input" class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea id="fav-input" class="form-control" [(ngModel)]="formFav" name="formFav" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>

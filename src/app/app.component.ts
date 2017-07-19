@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { SessionService } from './services/session.service';
+
 declare var $:any;
 @Component({
     selector: 'my-app',
@@ -8,8 +10,33 @@ declare var $:any;
 })
 
 export class AppComponent implements OnInit{
-    constructor(private elRef:ElementRef) {}
+
+  isLoggedIn: boolean = false;
+
+
+    constructor(private elRef:ElementRef,
+                private mySession: SessionService,
+                private myRouter: Router ) {}
+
     ngOnInit(){
+
+      this.mySession.loggedIn$.subscribe((userFromApi) => {
+        this.isLoggedIn = true;
+    });
+
+      this.mySession.checkLogin()
+        // if logged in, redirect to /lists
+        .then((userInfo) => {
+            this.myRouter.navigate(['/dashboard']);
+            this.isLoggedIn = true;
+        })
+        // else redirect to /
+        .catch((err) => {
+            this.myRouter.navigate(['/pages/login']);
+        });
+
+
+
         let body = document.getElementsByTagName('body')[0];
         var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
         if (isWindows){

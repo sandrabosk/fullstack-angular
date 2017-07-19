@@ -69,5 +69,14 @@ export class SessionService {
         .then(res => res.json());
   }
 
+  update(dataToSend) {
+    console.log('data to send' , dataToSend)
+    return this.myHttp
+      .put(`${this.baseUrl}/profile/edit`, dataToSend,
+        { withCredentials: true }
+      )
+      .toPromise()
+      .then(apiResponse => apiResponse.json())
+  }
 
 }
