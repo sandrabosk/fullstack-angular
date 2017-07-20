@@ -11,54 +11,50 @@
                             <small class="category">Complete your profile</small>
                         </h4>
                         <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group label-floating">
+                                      <label for="first-name-input" class="control-label">Fist Name</label>
+                                      <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control" value="{{ user.firstName }}" required>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="form-group label-floating">
+                                      <label for="last-name-input" class="control-label">Last Name</label>
+                                      <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control" value="{{ user.lastName }}" required>
+                                  </div>
+                              </div>
+                          </div>
                             <div class="row">
-                                <!-- <div class="col-md-5">
-                                    <div class="form-group label-floating">
-                                        <label class="control-label">Company (disabled)</label>
-                                        <input type="text" class="form-control" disabled>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label for="username-input">Username</label>
-                                        <input id="username-input" type="text" [(ngModel)]="formUsername" name="formUsername" class="form-control">
-                                    </div>
-                                </div> -->
                                 <div class="col-md-6">
                                       <div class="form-group label-floating">
                                           <label for="email-input">Email address</label>
                                           <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
                                       </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label for="dob-input">Date of Birth</label>
+                                        <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control" value="{{ user.dob }}">
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label for="first-name-input" class="control-label">Fist Name</label>
-                                        <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label for="last-name-input" class="control-label">Last Name</label>
-                                        <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                        <label for="dob-input">DOB</label>
-                                        <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control">
-                                    </div>
-                                </div>
+                              <br><br>
+                              <div class="col-md-6">
+                                  <div class="form-group label-floating">
+                                      <label for="profession-input" class="control-label">Profession</label>
+                                      <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control" value="{{ user.profession }}">
+                                  </div>
+                              </div>
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                       <label>Gender</label>
-                                      <br><br>
-                                      <div class="radio" *ngFor="let gender of genders">
+                                      <div style="display:inline" class="radio" *ngFor="let gender of gender">
                                         <label for="gender-input">
-                                          <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" [value]="gender.value">
+                                          <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" [value]="[gender.value]">
                                           {{ gender.display }}
                                         </label>
                                       </div>
@@ -69,21 +65,25 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group label-floating">
-                                        <label for="profession-input" class="control-label">Profession</label>
-                                        <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Fav Quote:</label>
+                                        <div class="form-group label-floating">
+                                            <!-- <label for="fav-input" class="control-label"></label> -->
+                                            <textarea id="fav-input" class="form-control" [(ngModel)]="formFav" name="formFav" rows="5">value="{{ user.fav }}"</textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Fav Quote:</label>
+                                        <label>About myself here:</label>
                                         <div class="form-group label-floating">
-                                            <label for="fav-input" class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                            <textarea id="fav-input" class="form-control" [(ngModel)]="formFav" name="formFav" rows="5"></textarea>
+                                            <label for="about-input" class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea id="about-input" class="form-control" [(ngModel)]="formAbout" name="formAbout" rows="5">value="{{ user.about }}"</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +94,38 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+<!-- //============================ -->
+<form>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-avatar">
+            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail img-circle">
+                    <img src="../../assets/img/placeholder.jpg" alt="...">
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
+                <div>
+                    <span class="btn btn-round btn-rose btn-file">
+                        <span class="fileinput-new">Add Photo</span>
+                        <span class="fileinput-exists">Change</span>
+                        <input type="file" name="file" id="file" />
+                    </span>
+                    <button (click)="submit()">Submit</button>
+                    <br />
+                    <span>
+                      <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                    </span>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+<!-- //======================= -->
+
+
+
+            <!-- <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
                         <a href="#pablo">
@@ -102,15 +133,14 @@
                         </a>
                     </div>
                     <div class="card-content">
-                        <h6 class="category text-gray">CEO / Co-Founder</h6>
-                        <h4 class="card-title">Alec Thompson</h4>
+                        <h6 class="category text-gray">Upload photo</h6>
+                        <h4 class="card-title">{{ formFirstName }} {{ formLastName }}</h4>
                         <p class="description">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        {{ formAbout }}
                         </p>
-                        <a href="#pablo" class="btn btn-rose btn-round">Follow</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
