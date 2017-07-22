@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 export class TravelplansService {
 
   baseUrl: string = environment.apiUrl;
-
+  public planId;
   constructor(
     private myHttp: Http
   ) { }
@@ -49,4 +49,19 @@ export class TravelplansService {
         .toPromise()
         .then(apiResponse => apiResponse.json())
     }
+
+    addPersonToList(planId, user){
+      console.log('user from front', user);
+      var usersid =  {id:user._id};
+      return this.myHttp
+        .post(`${this.baseUrl}/api/travelplans/${planId}/addfriends`,
+          usersid,
+          { withCredentials: true }
+        )
+        .toPromise()
+        .then(apiResponse => apiResponse.json());
+
+    }
+
+
   }

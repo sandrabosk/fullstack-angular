@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 // import { TravelPlansComponent } from '../travel-plans/travel-plans.component';
 import { TravelplansService } from '../services/travelplans.service';
@@ -11,6 +11,7 @@ import { TravelplansService } from '../services/travelplans.service';
 
 export class TravelplanDetailsComponent implements OnInit {
 
+  @Output() onAddToList = new EventEmitter<Object>();
   travelplan: Object;
   errorMessage: string = '';
   show: boolean = false;
@@ -56,5 +57,7 @@ export class TravelplanDetailsComponent implements OnInit {
 showThis() {
     this.show = !this.show;
   }
+
+  // addToList()
 
 }
