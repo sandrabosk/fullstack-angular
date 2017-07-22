@@ -1,0 +1,141 @@
+<div class="main-content">
+  <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
+
+    <div class="container-fluid" *ngIf="travelplan">
+        <div class="header text-center">
+            <h3 class="title">Details for travel plan to {{ travelplan.city }}, {{ travelplan.country }}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-content">
+                        <ul class="timeline">
+                            <li>
+                                <div class="timeline-badge success">
+                                    <!-- <i class="material-icons">card_travel</i> -->
+                                    <i class="material-icons">flight_takeoff</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-success">{{ travelplan.startDate | date:'MM/dd/yyyy' }}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                      <p></p>
+                                    </div>
+                                    <h6>
+                                        <i class="ti-time"></i> Let's do it!
+                                    </h6>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge info">
+                                    <!-- <i class="material-icons">extension</i> -->
+                                    <i class="material-icons">home</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-info">Accomodation</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>We are staying at <span style="color:green"><strong>{{ travelplan.accomodation['address'] }}</strong></span></p>
+                                        <p>Total amount for this trip's accomodation is <span style="color:green"><strong>{{ travelplan.accomodation['expense'] }} $</strong></span></p>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="timeline-badge info">
+                                    <!-- <i class="material-icons">fingerprint</i> -->
+                                    <i class="material-icons">train</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-info">Transportation</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p> {{ travelplan.transportation }} </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- added  -->
+
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge info">
+                                    <i class="material-icons">people</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-info">Fellow travellers</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p> Here go tha friends. </p>
+                                        <hr>
+                                        <div class="dropdown pull-left">
+                                            <button type="button" (click)="showThis()" class="btn btn-round btn-info">
+                                                <i class="material-icons">assignment_ind</i>
+                                                Add people
+                                            </button>
+                                            <!-- <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                <li>
+                                                    <a href="#action">I travel by myself</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                  <button class="btn btn-primary" (click)="showThis()"> Add </button>
+                                                </li>
+                                            </ul> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- end added  -->
+                            <li>
+                                <div class="timeline-badge warning">
+                                  <i class="material-icons">local_see</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-warning">Touristy things go here</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p> Attraction 1 </p>
+                                        <p> Attraction 2 </p>
+                                        <p> Attraction 3 </p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge danger">
+                                    <i class="material-icons">flight_land</i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <span class="label label-danger">{{ travelplan.endDate | date:'MM/dd/yyyy' }}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>End :( </p>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  add-people -->
+<div *ngIf="show">
+  <app-add-people></app-add-people>
+</div>
+<!--  end add-people -->
+
+
+
+<div style="margin-top:100px;">
+  <button (click) ="deleteTravelplan()">
+      <!-- <i class="material-icons">close</i> -->Delete
+  </button>
+
+</div>

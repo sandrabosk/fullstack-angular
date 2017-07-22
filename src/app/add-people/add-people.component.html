@@ -1,0 +1,22 @@
+<div>
+  <label for="people-search">Search</label>
+  <input id="people-search" type="text" [(ngModel)]="pattern">
+</div>
+
+
+
+<div *ngIf="users">
+<div *ngFor="let user of users | search:'firstName':pattern; let i= index">
+  <p>{{ user.firstName }} {{ user.lastName }} <button (click)="addToList(user)">Add</button></p>
+
+</div>
+</div>
+
+<div>
+  <h3>Added friends</h3>
+  <li *ngFor="let user of list">
+    <span>{{ user.firstName }}</span>
+    <span>{{ user.lastName }}</span>
+
+  </li>
+</div>

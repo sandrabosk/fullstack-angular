@@ -79,4 +79,25 @@ export class SessionService {
       .then(apiResponse => apiResponse.json())
   }
 
+  getUsersList() {
+      return this.myHttp
+        .get(
+          this.baseUrl + '/api/users',
+          { withCredentials: true }
+        )
+        .toPromise()
+        .then(res => res.json());
+  }
+  // addThePerson(person){
+  //   return this.myHttp
+  //     .post(`${this.baseUrl}/api/travelplans/${id}/addfriends`,
+  //       person,
+  //       { withCredentials: true }
+  //     )
+  //     .toPromise()
+  //     .then(apiResponse => apiResponse.json());
+  // 
+  // }
+
+
 }

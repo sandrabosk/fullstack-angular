@@ -2,7 +2,12 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { TravelPlansComponent } from './travel-plans/travel-plans.component';
+import { NewTravelplanComponent } from './new-travelplan/new-travelplan.component';
+import { TravelplanDetailsComponent } from './travelplan-details/travelplan-details.component';
+import { AddPeopleComponent } from './add-people/add-people.component';
 
+NewTravelplanComponent
 export const AppRoutes: Routes = [
     {
       path: '',
@@ -16,7 +21,24 @@ export const AppRoutes: Routes = [
           {
         path: '',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
-    },{
+    },
+    {
+      path:'travelplans',
+      component: TravelPlansComponent
+    },
+    {
+      path:'travelplans/new',
+      component: NewTravelplanComponent
+    },
+    {
+      path:'travelplans/:id',
+      component: TravelplanDetailsComponent
+    },
+    {
+      path:'travelplans/:id/addpeople',
+      component: AddPeopleComponent
+    },
+    {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
     },{

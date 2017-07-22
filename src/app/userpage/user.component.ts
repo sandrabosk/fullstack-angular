@@ -113,20 +113,22 @@ import 'rxjs/add/operator/toPromise';
         this.mySession.update(this.updatedUser);
       }
 
-      
+
 // this is the function that updates the user image only
       submit(){
         console.log("SUBMITTING FORM")
 
         let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#file'); //#file==> give me the element with the id file
+
         let form = new FormData(); //creatingan empty form
         form.append('file', inputEl.files.item(0)); //attaching the elements
+
 
         console.log('FORM' , form);
 
         // this.uploader.uploadAll();
-         this.myHttp.post(`http://localhost:3000/api/uploadphoto`, form)
+         this.myHttp.post(`http://localhost:3000/api/uploadphoto`, form,  { withCredentials: true })
           .toPromise()
-          .then((apiResponse)=>{});
+          .then((apiResponse)=>{ console.log(apiResponse)});
       }
     }

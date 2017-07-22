@@ -3,8 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SessionService } from './services/session.service';
+import { TravelplansService } from './services/travelplans.service';
+import { CustomPlansService } from './services/customplans.service';
 
 import { AppComponent }   from './app.component';
 
@@ -14,10 +16,16 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
+import { TravelPlansComponent } from './travel-plans/travel-plans.component';
+import { NewTravelplanComponent } from './new-travelplan/new-travelplan.component';
+import { TravelplanDetailsComponent } from './travelplan-details/travelplan-details.component';
+import { AddPeopleComponent } from './add-people/add-people.component';
+import { SearchPipe } from './pipes/search.pipe';
 @NgModule({
     imports:      [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(AppRoutes),
         HttpModule,
         SidebarModule,
@@ -27,10 +35,17 @@ import { AppRoutes } from './app.routing';
     declarations: [
         AppComponent,
         AdminLayoutComponent,
-        AuthLayoutComponent
+        AuthLayoutComponent,
+        TravelPlansComponent,
+        NewTravelplanComponent,
+        TravelplanDetailsComponent,
+        AddPeopleComponent,
+        SearchPipe
     ],
     providers: [
-      SessionService
+      SessionService,
+      TravelplansService,
+      CustomPlansService
     ],
     bootstrap:    [ AppComponent ]
 })

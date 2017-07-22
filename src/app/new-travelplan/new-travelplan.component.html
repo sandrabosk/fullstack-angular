@@ -1,0 +1,133 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                  <!-- form starts -->
+                    <form (ngSubmit)="createNewTravelPlan(myForm1)" #myForm1="ngForm" class="form-horizontal">
+                        <div class="card-header card-header-text" data-background-color="rose">
+                            <h4 class="card-title"><i class="material-icons">contacts</i><i>Create a travel plan</i></h4>
+                        </div>
+                        <!-- fields start -->
+                        <div class="card-content">
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Country</label>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <label for="country-input" class="control-label"></label>
+                                        <input id="country-input" type="text" [(ngModel)]="formCountry" name="formCountry" class="form-control" required>
+                                    </div>
+                                </div>
+                                <label class="col-sm-2 label-on-left">City</label>
+                                <div class="col-sm-4">
+                                    <div class="form-group label-floating is-empty">
+                                        <label for="city-input"class="control-label"></label>
+                                        <input for="city-input" type="text" [(ngModel)]="formCity" name="formCity" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- date and time picker -->
+                            <div class="row">
+                              <div class="col-sm-4">
+                                  <div class="card">
+                                      <div class="card-header card-header-icon" data-background-color="rose">
+                                          <i class="material-icons">today</i>
+                                      </div>
+                                      <div class="card-content">
+                                          <div class="form-group">
+                                              <label for="start-date-input"class="label-control">Start date:</label>
+                                              <input id="start-date-input" type="date" [(ngModel)]="formStart" name="formStart" class="form-control" />
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-sm-4">
+                                  <div class="card">
+                                      <div class="card-header card-header-icon" data-background-color="rose">
+                                          <i class="material-icons">today</i>
+                                      </div>
+                                      <div class="card-content">
+                                          <div class="form-group">
+                                              <label for="end-date-input"class="label-control">End date:</label>
+                                              <input id="end-date-input" type="date" [(ngModel)]="formEnd" name="formEnd" class="form-control" />
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <!-- <div class="col-sm-4">
+                                <label class="col-sm-2 label-on-left">From:</label>
+                                <p>here goes something1111</p>
+                              </div>
+                              <div class="col-sm-4">
+                                <label class="col-sm-2 label-on-left">To:</label>
+                                <p>here goes something2222</p>
+                              </div> -->
+                            </div>
+                            <!-- date and time picker ends here -->
+
+                            <!--  Transportation details -->
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Transportation details:</label>
+                                <div class="col-md-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label for="transportation-input" class="control-label"></label>
+                                        <textarea id="transportation-input" class="form-control" [(ngModel)]="formTransportation" name="formTransportation" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  Transportation details ends here -->
+
+                            <!--  accomodation details -->
+
+                            <div class="row">
+                                <label class="col-sm-2 label-on-left">Accomodation details:</label>
+                                    <div class="col-sm-10">
+                                        <div class="form-group label-floating is-empty">
+                                            <label for="acc-addr-input" class="control-label"></label>
+                                            <input id="acc-addr-input" type="text" [(ngModel)]="formAccAddr" name="formAccAddr" class="form-control" placeholder="Address..." required>
+                                        </div>
+                                    </div>
+                              </div>
+                              <div class="row">
+                                <label class="col-sm-2 label-on-left"></label>
+                                    <div class="col-sm-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label for="acc-expense-input"class="control-label"></label>
+                                            <input for="acc-expense-input" type="number" [(ngModel)]="formAccExpense" name="formAccExpense" class="form-control" placeholder="Amount" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                <label class="col-sm-2 label-on-left"></label>
+                                    <div class="col-sm-10">
+                                        <div class="form-group label-floating is-empty">
+                                            <label for="accomodation-input" class="control-label"></label>
+                                            <textarea id="accomodation-input" class="form-control" [(ngModel)]="formAccomodation" name="formAccomodation" rows="3" placeholder="Additional comments..."></textarea>
+                                        </div>
+                                    </div>
+                              </div> -->
+                      <!--  accomodation details ends here -->
+
+
+            <!-- disabled field so that users who are added can not change it. Only the creator of the plan can change it. -->
+
+                            <!-- <div class="row">
+                                <label class="col-sm-2 label-on-left">Disabled</label>
+                                <div class="col-sm-10">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        <input type="text" placeholder="Disabled input here..." disabled="" class="form-control">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <button type="submit" class="btn btn-rose pull-right">Create</button>
+                        </div>
+                  <!-- fields end -->
+                    </form>
+            <!-- form ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
