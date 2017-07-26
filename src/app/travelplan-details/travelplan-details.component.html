@@ -1,9 +1,22 @@
+<style media="screen">
+.map-search{
+  margin-left: 10%;
+  border: 3px dotted black;
+}
+</style>
+
+
 <div class="main-content">
   <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
 
     <div class="container-fluid" *ngIf="travelplan">
         <div class="header text-center">
             <h3 class="title">Details for travel plan to {{ travelplan.city }}, {{ travelplan.country }}</h3>
+            <div style="margin-top:100px;">
+              <button (click) ="deleteTravelplan()">
+                Delete
+              </button>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -12,7 +25,6 @@
                         <ul class="timeline">
                             <li>
                                 <div class="timeline-badge success">
-                                    <!-- <i class="material-icons">card_travel</i> -->
                                     <i class="material-icons">flight_takeoff</i>
                                 </div>
                                 <div class="timeline-panel">
@@ -29,7 +41,6 @@
                             </li>
                             <li class="timeline-inverted">
                                 <div class="timeline-badge info">
-                                    <!-- <i class="material-icons">extension</i> -->
                                     <i class="material-icons">home</i>
                                 </div>
                                 <div class="timeline-panel">
@@ -45,7 +56,6 @@
                             </li>
                             <li>
                                 <div class="timeline-badge info">
-                                    <!-- <i class="material-icons">fingerprint</i> -->
                                     <i class="material-icons">train</i>
                                 </div>
                                 <div class="timeline-panel">
@@ -68,17 +78,15 @@
                                         <span class="label label-info">Fellow travellers</span>
                                     </div>
                                     <div class="timeline-body">
-                                        <p> Here go tha friends. </p>
-                                        <hr>
                                         <div class="dropdown pull-left">
                                             <button type="button" (click)="showThis()" class="btn btn-round btn-info">
                                                 <i class="material-icons">assignment_ind</i>
                                                 Add people
                                             </button>
-
+                                            <hr>
                                             <!--  add-people -->
                                             <div *ngIf="show">
-                                              <app-add-people></app-add-people>
+                                              <app-add-people [travelplan]="travelplan"></app-add-people>
                                             </div>
                                             <!--  end add-people -->
                                         </div>
@@ -114,21 +122,25 @@
                                     </div>
                                 </div>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </div>
+
         </div>
+        <hr>
+        <div class="map-search" style="height:500px !important; width:750px !important;">
+          <fullscreen-map-cmps [travelplanId]="travelplan._id"></fullscreen-map-cmps>
+        </div>
+          <!-- <fullscreen-map-cmp ></fullscreen-map-cmp> -->
+
     </div>
+
+
 </div>
 
 
 
 
-<div style="margin-top:100px;">
-  <button (click) ="deleteTravelplan()">
-      <!-- <i class="material-icons">close</i> -->Delete
-  </button>
 
-</div>
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuErDWxWud1Z7NLJgy0R5M2HmF6wlImcE&libraries=places" async defer></script> -->

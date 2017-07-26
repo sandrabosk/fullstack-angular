@@ -1,7 +1,22 @@
+// import { Component, OnInit } from '@angular/core';
+//
+// @Component({
+//   selector: 'fullscreen-map-cmps',
+//   templateUrl: './fullscreenmap.component.html',
+//   styleUrls: ['./fullscreenmap.component.css']
+// })
+// export class FullscreenmapComponent implements OnInit {
+//
+//   constructor() { }
+//
+//   ngOnInit() {
+//   }
+//
+// }
 declare var google:any;
 import {Component, OnInit,AfterViewInit,Input, Output, EventEmitter, trigger,state,style,transition,animate,keyframes} from '@angular/core';
-// import { TravelplansService } from '../../services/travelplans.service';
-// import { SessionService } from '../../services/session.service';
+import { TravelplansService } from '../../services/travelplans.service';
+import { SessionService } from '../../services/session.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -14,7 +29,7 @@ interface marker {
 }
 @Component({
     moduleId: module.id,
-    selector: 'fullscreen-map-cmp',
+    selector: 'fullscreen-map-cmps',
     templateUrl: 'fullscreenmap.component.html',
     animations: [
         trigger('maps', [
@@ -29,7 +44,7 @@ interface marker {
     ]
 })
 
-export class FullScreenMapsComponent implements OnInit{
+export class FullscreenmapComponent implements OnInit{
 	@Input() travelplanId: any;
 
 
@@ -45,17 +60,17 @@ export class FullScreenMapsComponent implements OnInit{
 
 	constructor(
 		private myRoute: ActivatedRoute,
-		// private mySessionService: SessionService,
-		// private myTravelplansService: TravelplansService,
+		private mySessionService: SessionService,
+		private myTravelplansService: TravelplansService,
 	){}
 
     ngOnInit(){
 
-			// this.myRoute.params.subscribe((params)=>{
-			// 	this.getTheDetails(params['id']);
-			// 	console.log('paramsId', params['id'])
-			// });
-			// this.myRoute.params.subscribe((params)=>this.travelplan = {});
+			this.myRoute.params.subscribe((params)=>{
+				this.getTheDetails(params['id']);
+				console.log('paramsId', params['id'])
+			});
+			this.myRoute.params.subscribe((params)=>this.travelplan = {});
 
 
 		console.log('init')
@@ -156,7 +171,7 @@ export class FullScreenMapsComponent implements OnInit{
 				  setupClickListener('changetype-all', []);
 				  setupClickListener('changetype-address', ['address']);
 				  setupClickListener('changetype-establishment', ['establishment']);
-				  setupClickListener('changetype-geocode', ['geocode']);
+				  // setupClickListener('changetype-geocode', ['geocode']);
 
 				}
 				initMap();
@@ -164,27 +179,30 @@ export class FullScreenMapsComponent implements OnInit{
 
 	}
 
-	// getTheDetails(id) {
-	// 	this.myTravelplansService.getDetails(id)
-	// 		.then((theTravelplanDetails) => {
-	// 			this.travelplan = theTravelplanDetails;
-	// 		})
-	// 		.catch((err) => {
-	// 			this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
-	// 		});
-	// }
+	getTheDetails(id) {
+		this.myTravelplansService.getDetails(id)
+			.then((theTravelplanDetails) => {
+				this.travelplan = theTravelplanDetails;
+			})
+			.catch((err) => {
+				this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
+			});
+	}
 
 
-	//
-	// submitLocation(formData){
-	// 		this.myTravelplansService.submitTheLocation(this.travelplan, formData)
-	// 			.then((locationFromApi)=>{
-	// 				this.location = locationFromApi
-	// 			})
-	// 			.catch((err)=>{
-	//         this.errorMessage = 'There has been an error so person is not added.'
-	//       })
-	// }
+	submitLocation(travelplanId,formData){
+			// this.myTravelplansService.submitTheLocation(this.travelplanId, formData)
+			// 	.then((locationFromApi)=>{
+			// 		console.log('sumbit in component');
+			//
+			// 		this.location = locationFromApi
+			// 	})
+			// 	.catch((err)=>{
+	    //     this.errorMessage = 'There has been an error so person is not added.'
+	    //   })
+
+			alert(this.travelplanId);
+	}
 
 }
 // this.formAttrName, this.address, this.formAttrCity, this.formAttrCountry, this.formAttrAbout

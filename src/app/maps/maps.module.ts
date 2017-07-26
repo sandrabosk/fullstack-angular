@@ -11,6 +11,7 @@ import { MapsRoutes } from './maps.routing';
 import { FullScreenMapsComponent } from './fullscreenmap/fullscreenmap.component';
 import { GoogleMapsComponent } from './googlemaps/googlemaps.component';
 import { VectorMapsComponent } from './vectormaps/vectormaps.component';
+import { MapsComponent } from './maps.component';
 
 
 @NgModule({
@@ -19,13 +20,14 @@ import { VectorMapsComponent } from './vectormaps/vectormaps.component';
     RouterModule.forChild(MapsRoutes),
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      apiKey: 'AIzaSyDukOM6CMrPzyp-vaBFJPGis8lL1EPGwNs'
     })
   ],
   declarations: [
       FullScreenMapsComponent,
       GoogleMapsComponent,
-      VectorMapsComponent
+      VectorMapsComponent,
+      MapsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -70,9 +70,9 @@ export class SessionService {
   }
 
   update(dataToSend) {
-    console.log('data to send' , dataToSend)
+    console.log('data to send', dataToSend)
     return this.myHttp
-      .put(`${this.baseUrl}/profile/edit`, dataToSend,
+      .post(`${this.baseUrl}/api/profile/edit`, dataToSend,
         { withCredentials: true }
       )
       .toPromise()

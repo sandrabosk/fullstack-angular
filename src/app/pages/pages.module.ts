@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 // import { MdIconModule, MdCardModule, MdInputModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { FlexLayoutModule } from '@angular/flex-layout';
+import { SessionService } from '../services/session.service';
+import { TravelplansService } from '../services/travelplans.service';
+import { CustomPlansService } from '../services/customplans.service';
 
 import { PagesRoutes } from './pages.routing';
 
@@ -24,7 +27,12 @@ import { LoginComponent } from './login/login.component';
     RegisterComponent,
     PricingComponent,
     LockComponent
-  ]
+  ],
+  providers: [
+    SessionService,
+    TravelplansService,
+    CustomPlansService
+  ],
 })
 
 export class PagesModule {}

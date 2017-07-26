@@ -3,24 +3,16 @@
   <input id="people-search" type="text" [(ngModel)]="pattern">
 </div>
 
-
-
 <div *ngIf="users">
   <div *ngIf="travelplan">
+    <div *ngFor="let user of users | search:'firstName':pattern; let i= index;">
+      <p>{{ user.firstName }} {{ user.lastName }} <button (click)="pushTheUser(travelplan._id, user)">Add</button></p>
+    </div>
 
-<div *ngFor="let user of users | search:'firstName':pattern; let i= index;">
-  <p>{{ user.firstName }} {{ user.lastName }} <button (click)="pushTheUser(travelplan._id, user)">Add</button></p>
-
+    <h3>Added friends</h3>
+    <li *ngFor="let oneUser of travelplan.travelFriends">
+      <span>{{ oneUser.firstName }}</span>
+      <span>{{ oneUser.lastName }}</span>
+    </li>
+  </div>
 </div>
-</div>
-
-<!-- <div>
-  <h3>Added friends</h3>
-  <li *ngFor="let oneUser of user">
-    <p>som</p>
-    <span>{{ oneUser.firstName }}</span>
-    <span>{{ oneUser.lastName }}</span>
-    <span>{{ oneUser.username }}</span>
-
-  </li>
-</div> -->

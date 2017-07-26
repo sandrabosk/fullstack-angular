@@ -9,6 +9,8 @@ export class TravelplansService {
 
   baseUrl: string = environment.apiUrl;
   public planId;
+
+
   constructor(
     private myHttp: Http
   ) { }
@@ -47,7 +49,7 @@ export class TravelplansService {
         .delete(`${this.baseUrl}/api/travelplans/${id}`,
           { withCredentials: true })
         .toPromise()
-        .then(apiResponse => apiResponse.json())
+        .then(apiResponse => apiResponse.json());
     }
 
     addPersonToList(planId, user){
@@ -63,5 +65,25 @@ export class TravelplansService {
 
     }
 
+    getDetails(id){
+      return this.myHttp.get(`${this.baseUrl}/api/travelplans/${id}/maplocations`)
+      .toPromise()
+      .then(apiResponse => apiResponse.json());
+    }
+
+    submitTheLocation(planId, dataToSend){
+      return this.myHttp
+        .post(`${this.baseUrl}/api/travelplans/${planId}`,
+          dataToSend,
+      { withCredentials: true }
+    )
+    .toPromise()
+    .then(apiResponse => apiResponse.json());
+    }
+
 
   }
+
+  //planId, name,address,city,country,about
+
+  //        { name: name, address: address, city: city, country: country, about: about },

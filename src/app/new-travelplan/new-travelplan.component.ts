@@ -79,7 +79,9 @@ export class NewTravelplanComponent implements OnInit {
       this.accomodation["address"] = "";
       this.accomodation["expense"] = "";
       this.newTravelPlan = {};
+      this.myRouter.navigate(['/travelplans'])
     })
+      .catch(()=>{})
   }
 
 }

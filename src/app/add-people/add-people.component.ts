@@ -11,11 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-people.component.css']
 })
 export class AddPeopleComponent implements OnInit {
-  // @Output () onAddPeople = new EventEmitter<Object>();
 
-  public travelplan: Object;
+ @Input() travelplan: any;
   public user;
-  // public id;
   public users: any[] = [];
   public errorMessage: string = '';
   public list: {firstName: string, lastName: string}[] = [];
@@ -34,40 +32,32 @@ export class AddPeopleComponent implements OnInit {
       .catch((err)=>{
         this.errorMessage = 'Displaying users went wrong.'
       })
-      this.myRoute.params.subscribe((params)=>{
-        this.getTravelplanDetails(params['id']);
-      });
+      console.log('travelplan', this.travelplan);
+    this.myRoute.params.subscribe((params)=>{
+      this.getTravelplanDetails(params['id']);
+      console.log('paramsId from add user', params['id'])
+    });
   }
   getTravelplanDetails(id) {
     this.myTravelplansService.get(id)
       .then((theTravelplanDetails) => {
         this.travelplan = theTravelplanDetails;
+        console.log("PLAN", this.travelplan);
       })
       .catch((err) => {
         this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
       });
   }
 
-  pushTheUser(travelplan, user){
+  pushTheUser(travelplan, user) {
 
     this.myTravelplansService.addPersonToList(travelplan, user)
-      .then((addedUser)=>{
-        this.user = addedUser;
+      .then((res)=>{
+        this.travelplan.travelFriends.push(res.data);
       })
       .catch((err)=>{
         this.errorMessage = 'There has been an error so person is not added.'
       })
   }
-
-// addToList(user,id){
-//     // this.list.push(user);
-//     this.mySessionService.addThePerson(this.person, id)
-//     .then((addedPerson) => {
-//       this.person = addedPerson;
-//     })
-//     .catch((err)=>{
-//       this.errorMessage = 'There has been an error so person is not added.'
-//     })
-//       }
 
 }

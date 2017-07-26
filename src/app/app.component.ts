@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
       this.mySession.loggedIn$.subscribe((userFromApi) => {
         this.isLoggedIn = true;
     });
-
+//=====================
       this.mySession.checkLogin()
         // if logged in, redirect to /lists
         .then((userInfo) => {
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit{
             this.myRouter.navigate(['/pages/login']);
         });
 
-
+//=====================
 
         let body = document.getElementsByTagName('body')[0];
         var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;

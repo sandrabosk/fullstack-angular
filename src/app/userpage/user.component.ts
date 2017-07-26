@@ -110,7 +110,11 @@ import 'rxjs/add/operator/toPromise';
           about: this.about
         }
         console.log('updated user:' , this.updatedUser )
-        this.mySession.update(this.updatedUser);
+        this.mySession.update(this.updatedUser)
+          .then(()=>{
+            this.myRouter.navigate(['/']);
+          })
+          .catch(()=>{})
       }
 
 

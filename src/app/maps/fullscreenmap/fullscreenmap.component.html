@@ -1,1 +1,76 @@
+<style media="screen">
+  #map {
+    height: 50%;
+    width:  50%;
+    overflow: visible !important;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<div style="margin-top:50px;">
+  <div class="pac-card" id="pac-card">
+    <div>
+      <div id="title">
+        Autocomplete search
+      </div>
+      <div id="type-selector" class="pac-controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked">
+        <label for="changetype-all">All</label>
+
+        <input type="radio" name="type" id="changetype-establishment">
+        <label for="changetype-establishment">Establishments</label>
+
+        <input type="radio" name="type" id="changetype-address">
+        <label for="changetype-address">Addresses</label>
+
+        <input type="radio" name="type" id="changetype-geocode">
+        <label for="changetype-geocode">Geocodes</label>
+      </div>
+    </div>
+    <div id="pac-container">
+      <form  (ngSubmit)="submitLocation(myForm2)" #myForm2="ngForm" class="form-horizontal">
+
+      <input id="pac-input1" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName">
+      <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal">
+      <input id="pac-input2" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity">
+      <input id="pac-input3" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry">
+      <textarea id="pac-input4" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="4"></textarea>
+
+
+
+
+      <button type="submit" name="button">Add attraction</button>
+
+      </form>
+    </div>
+  </div>
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon">
+    <span id="place-name"  class="title"></span><br>
+    <span id="place-address"></span>
+  </div>
+</div>
+
+
 <div id="map"></div>
+
+
+<div *ngIf="travelplan">
+  <div *ngIf="maplocations">
+    <div *ngFor="let maplocation of maplocations">
+      <p>{{ maplocation.name }}</p>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuErDWxWud1Z7NLJgy0R5M2HmF6wlImcE&libraries=places" async defer></script>
