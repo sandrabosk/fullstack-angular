@@ -1,127 +1,209 @@
+<style media="screen">
+  .prof-pane{
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    max-height: 300px;
+  }
+  .undot li {
+    list-style: none;
+  }
+</style>
+
+
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header card-header-icon" data-background-color="rose">
-                        <i class="material-icons">perm_identity</i>
-                    </div>
-                    <div class="card-content">
-                        <h4 class="card-title">Edit Profile -
-                            <small class="category">Complete your profile</small>
-                        </h4>
-                        <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="first-name-input" class="control-label">Fist Name</label>
-                                      <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control" value="{{ user.firstName }}" required>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="last-name-input" class="control-label">Last Name</label>
-                                      <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control" value="{{ user.lastName }}" required>
-                                  </div>
-                              </div>
-                          </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                      <div class="form-group">
-                                          <label for="email-input">Email address</label>
-                                          <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
-                                      </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="dob-input">Date of Birth</label>
-                                        <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control" value="{{ user.dob }}">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-                              <br><br>
-                              <div class="col-md-6">
-                                  <div class="form-group">
-                                      <label for="profession-input" class="control-label">Profession</label>
-                                      <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control" value="{{ user.profession }}">
-                                  </div>
-                              </div>
-                                <div class="col-md-6">
-                                    <div class="form-group label-floating">
-                                      <label>Gender</label>
-                                      <div style="display:inline" class="radio" *ngFor="let gender of gender">
-                                        <label for="gender-input">
-                                          <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" [value]="[gender.value]">
-                                          {{ gender.display }}
-                                        </label>
-                                      </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Fav Quote:</label>
-                                        <div class="form-group label-floating">
-                                            <label for="fav-input" class="control-label"><strong>Old ways won't open new doors. </strong> </label>
-                                            <textarea id="fav-input" class="form-control" [(ngModel)]="formFav" name="formFav" rows="2">{{ user.fav }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>About myself here:</label>
-                                        <div class="form-group label-floating">
-                                            <label for="about-input" class="control-label"></label>
-                                            <textarea id="about-input" class="form-control" [(ngModel)]="formAbout" name="formAbout" rows="4">{{ user.about }}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-<!-- //============================ -->
-<form>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-avatar">
-            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                <div class="fileinput-new thumbnail img-circle">
-                    <img src="../../assets/img/placeholder.jpg" alt="...">
+          <div class="card card-profile">
+            <form>
+                <div class="card-avatar fileinput fileinput-new text-center" data-provides="fileinput">
+                  <div class="fileinput-new" style="width:170px; height:170px;">
+                    <img class="img-circle" [src]="user.image" style="width:170px; height:170px;" />
+                  </div>
                 </div>
                 <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                 <div>
-                    <span class="btn btn-round btn-rose btn-file">
-                        <span class="fileinput-new">Add Photo</span>
-                        <span class="fileinput-exists">Change</span>
-                        <input type="file" name="file" id="file" />
-                    </span>
-                    <button (click)="submit()" class="btn btn-round btn-rose btn-file">Submit</button>
-                    <br />
-                    <span>
-                      <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-                    </span>
+                  <span class="btn btn-round btn-rose btn-file">
+                    <span class="fileinput-new">Add Photo</span>
+                    <span class="fileinput-exists">Change</span>
+                    <input type="file" name="file" id="file" />
+                  </span>
+                  <button (click)="submit()" class="btn btn-round btn-rose btn-file">Submit</button>
+                  <br />
+                  <span>
+                    <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                  </span>
                 </div>
-            </div>
+            </form>
+                <div class="card-header">
+                    <h4 class="card-title"> {{ user.firstName }} {{ user.lastName  }}
+                    </h4>
+                </div>
+              <div class="card-content">
+                  <ul class="nav nav-pills nav-pills-rose">
+                      <li class="active">
+                          <a href="#pill1" data-toggle="tab">Profile</a>
+                      </li>
+                      <li>
+                          <a href="#pill2" data-toggle="tab">Edit profile</a>
+                      </li>
+                      <!-- <li>
+                          <a href="#pill3" data-toggle="tab">Upload/change photo</a>
+                      </li> -->
+                  </ul>
+
+            <!-- nav-1 -->
+                  <div class="tab-content">
+                      <div class="tab-pane" id="pill2">
+                        <!-- edit -->
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">perm_identity</i>
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Edit Profile -
+                                        <small class="category">Complete your profile</small>
+                                    </h4>
+                                    <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="first-name-input" class="control-label">Fist Name</label>
+                                                  <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control" value="{{ user.firstName }}" required>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="last-name-input" class="control-label">Last Name</label>
+                                                  <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control" value="{{ user.lastName }}" required>
+                                              </div>
+                                          </div>
+                                      </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label for="email-input">Email address</label>
+                                                      <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="dob-input">Date of Birth</label>
+                                                    <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control" value="{{ user.dob }}">
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row">
+                                          <br><br>
+                                          <div class="col-md-6">
+                                              <div class="form-group">
+                                                  <label for="profession-input" class="control-label">Profession</label>
+                                                  <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control" value="{{ user.profession }}">
+                                              </div>
+                                          </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                  <label>Gender</label>
+                                                  <div style="display:inline" class="radio" *ngFor="let gender of gender">
+                                                    <label for="gender-input">
+                                                      <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" [value]="[gender.value]">
+                                                      {{ gender.display }}
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Fav Quote:</label>
+                                                    <div class="form-group">
+                                                        <label for="fav-input" class="control-label"><strong>Old ways won't open new doors. </strong> </label>
+                                                        <textarea id="fav-input" class="form-control" [(ngModel)]="formFav" name="formFav" rows="2">{{ user.fav }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>About myself here:</label>
+                                                    <div class="form-group">
+                                                        <label for="about-input" class="control-label"></label>
+                                                        <textarea id="about-input" class="form-control" [(ngModel)]="formAbout" name="formAbout" rows="4">{{ user.about }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                <!-- end nav-1 -->
+                      <div class="tab-pane active" id="pill1">
+                        <div class="prof-pane">
+                        <ul class="undot">
+                          <li><span><i class="material-icons">email</i></span><span>{{ user.email }}</span></li>
+                          <li><span><i class="material-icons">favorite</i></span><span>"{{ user.fav }}"</span></li>
+                          <li><span><i class="material-icons">cake</i></span><span>{{ user.dob | date:'MM/dd/yyyy' }}</span>
+                              <span><i class="material-icons">play_for_work</i></span><span>{{ user.profession }}</span>
+                          </li>
+                          <li><span><i class="material-icons">label</i></span><span>{{ user.about }}</span></li>
+                        </ul>
+                        </div>
+                      </div>
+                      <!-- <div class="tab-pane" id="pill3">
+                          Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                          <br />
+                          <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
+                      </div> -->
+                  </div>
+              </div>
           </div>
-        </div>
-    </div>
-</form>
-<!-- //======================= -->
+
+
+          <!-- ************************************** -->
+          <!-- //============================ -->
+          <!-- <form> -->
+              <!-- <div class="col-md-4"> -->
+                <!-- <div class="card"> -->
+                  <!-- <div class="card-avatar"> -->
+                      <!-- <div class="fileinput fileinput-new text-center" data-provides="fileinput"> -->
+                          <!-- <div class="fileinput-new thumbnail img-circle"> -->
+                              <!-- <img src="../../assets/img/placeholder.jpg" alt="..."> -->
+                          <!-- </div> -->
+                          <!-- <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div> -->
+                          <!-- <div>
+                              <span class="btn btn-round btn-rose btn-file">
+                                  <span class="fileinput-new">Add Photo</span>
+                                  <span class="fileinput-exists">Change</span>
+                                  <input type="file" name="file" id="file" />
+                              </span>
+                              <button (click)="submit()" class="btn btn-round btn-rose btn-file">Submit</button>
+                              <br />
+                              <span>
+                                <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                              </span>
+                          </div> -->
+                      <!-- </div> -->
+                    <!-- </div> -->
+                  <!-- </div> -->
+              <!-- </div> -->
+          <!-- </form> -->
+          <!-- //======================= -->
 
 
 
-            <div class="col-md-4">
+
+            <!-- <div class="col-md-4">
                 <div class="card card-profile">
                     <div class="card-avatar">
                         <a href="#pablo">
@@ -136,7 +218,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

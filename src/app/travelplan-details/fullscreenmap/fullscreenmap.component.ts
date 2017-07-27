@@ -49,9 +49,9 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export class FullscreenmapComponent implements OnInit{
 
-	@Input() theTravelplan: any;
+	@Input() travelplan: any;
 
-	public travelplan: Object;
+	// public travelplan: Object;
 	public location: string;
 	public formAttrName: string;
 	public address: string;
@@ -68,10 +68,10 @@ export class FullscreenmapComponent implements OnInit{
 
     ngOnInit(){
 
-			this.myRoute.params.subscribe((params)=>{
-				this.getTheDetails(params['id']);
-				console.log('paramsId', params['id'])
-			});
+			// this.myRoute.params.subscribe((params)=>{
+			// 	this.getTheDetails(params['id']);
+			// 	console.log('paramsId', params['id'])
+			// });
 
 		//GOOGLE MAPS THINGS:
 		console.log('init')
@@ -179,15 +179,15 @@ export class FullscreenmapComponent implements OnInit{
 
 	}
 
-	getTheDetails(id) {
-		this.myTravelplansService.getDetails(id)
-			.then((theTravelplanDetails) => {
-				this.travelplan = theTravelplanDetails;
-			})
-			.catch((err) => {
-				this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
-			});
-	}
+	// getTheDetails(id) {
+	// 	this.myTravelplansService.getDetails(id)
+	// 		.then((theTravelplanDetails) => {
+	// 			this.travelplan = theTravelplanDetails;
+	// 		})
+	// 		.catch((err) => {
+	// 			this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
+	// 		});
+	// }
 
 
 	submitLocation(planId, formData){
@@ -196,7 +196,7 @@ export class FullscreenmapComponent implements OnInit{
 		// console.log('planId', planId)
 			this.myTravelplansService.submitTheLocation(planId,formData, this.address)
 				.then((res)=>{
-					this.theTravelplan.tourAttractions.push(res.new);
+					this.travelplan.tourAttractions.push(res.new);
 					// this.myRouter.navigate([`/travelplans/${planId}/maplocations`])
 				})
 				.catch((err)=>{

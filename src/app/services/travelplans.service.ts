@@ -66,14 +66,14 @@ import { environment } from '../../environments/environment';
 
     }
 
-    getDetails(id){
-      return this.myHttp
-        .get(`${this.baseUrl}/api/travelplans/${id}/maplocations`,
-          { withCredentials: true }
-        )
-        .toPromise()
-        .then(apiResponse => apiResponse.json());
-    }
+    // getDetails(id){
+    //   return this.myHttp
+    //     .get(`${this.baseUrl}/api/travelplans/${id}/maplocations`,
+    //       { withCredentials: true }
+    //     )
+    //     .toPromise()
+    //     .then(apiResponse => apiResponse.json());
+    // }
 
     submitTheLocation(planId, dataToSend, address){
       console.log("NHGFCVBNJUYTRESDBHUYTRESDVBHYTRDCVBHYTFVBNJUYTRDVBHYT")

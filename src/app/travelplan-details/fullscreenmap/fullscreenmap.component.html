@@ -25,15 +25,10 @@
 }
 
 .pac-card {
-  /*margin: 10px 10px 0 0;*/
-  /*border-radius: 2px 0 0 2px;*/
-  /*box-sizing: border-box;*/
   -moz-box-sizing: border-box;
   outline: none;
-  /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);*/
   background-color: #fff;
   font-family: inherit;
-  /*width: 600px;*/
 }
 
 #pac-container {
@@ -68,18 +63,13 @@
 <!-- MAP DIV -->
 <div class="row" id="map"></div>
 <!-- / MAP DIV -->
-
+<br><br>
 
 <!-- ADDDED -->
 <div class="row">
     <div class="col-md-12">
-        <h3 class="title text-center">TOURISTY THINGS</h3>
-        <br />
         <div class="nav-center">
-            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
-                <!--
-    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
--->
+            <ul class="nav nav-pills nav-pills-danger nav-pills-icons" role="tablist">
                 <li>
                     <a href="#description-1" role="tab" data-toggle="tab">
                         <i class="material-icons">info</i> Search
@@ -96,25 +86,20 @@
             <div class="tab-pane" id="description-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Search through <span style="color:orange; font-weight: bold;">{{theTravelplan.city | capitalize }} </span> </h4>
+                        <h4 class="card-title">Save the spots in <span style="color:orange; font-weight: bold;">{{travelplan.city | capitalize }} </span> </h4>
                     </div>
                     <div class="card-content pac-card" id="pac-card">
                       <div>
-
-                        <!-- <div class="pac-card" id="pac-card" style="background-color:white; border: 3px dotted green;"> -->
-                          <!-- <div class="col-md-12"> -->
-                          <!-- <div id="title"></div> -->
-                            <div class="col-md-12 pac-controls" id="type-selector" style="margin-left:200px;">
-                              <input type="radio" name="type" id="changetype-all" checked="checked">
-                              <label for="changetype-all">All</label>
-                              <input type="radio" name="type" id="changetype-establishment">
-                              <label for="changetype-establishment">Establishments</label>
-                              <input type="radio" name="type" id="changetype-address">
-                              <label for="changetype-address">Addresses</label>
-                            </div>
-                          <!-- </div> -->
+                          <div class="col-md-12 pac-controls" id="type-selector" style="margin-left:200px;">
+                            <input type="radio" name="type" id="changetype-all" checked="checked">
+                            <label for="changetype-all">All</label>
+                            <input type="radio" name="type" id="changetype-establishment">
+                            <label for="changetype-establishment">Establishments</label>
+                            <input type="radio" name="type" id="changetype-address">
+                            <label for="changetype-address">Addresses</label>
+                          </div>
                           <div id="pac-container">
-                            <form  (ngSubmit)="submitLocation(theTravelplan._id, myForm2)" #myForm2="ngForm" class="form-horizontal">
+                            <form  (ngSubmit)="submitLocation(travelplan._id, myForm2)" #myForm2="ngForm" class="form-horizontal">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="tp-name-input"></label>
@@ -127,18 +112,6 @@
                                         <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal" class="form-control" required>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="tp-city-input"></label>
-                                        <input id="tp-city-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity" class="form-control" required>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="tp-country-input"></label>
-                                        <input id="tp-country-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry" class="form-control" required>
-                                    </div>
-                                </div> -->
                                 <label for="tp-about-input"></label>
                                 <textarea id="tp-about-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2" class="form-control"></textarea>
                             <!-- <input id="pac-input" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName"> -->
@@ -146,7 +119,7 @@
                             <!-- <input id="pac-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity"> -->
                             <!-- <input id="pac-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry"> -->
                             <!-- <textarea id="pac-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2"></textarea> -->
-                            <button type="submit" name="button" class="btn btn-md btn-warning pull-right">Add attraction</button>
+                            <button type="submit" name="button" class="btn btn-fill btn-wd btn-warning pull-right">Add attraction</button>
                             </form>
                             </div>
                               <div id="infowindow-content">
@@ -165,12 +138,11 @@
                         <h4 class="card-title">Locations</h4>
                     </div>
                     <div class="card-content">
-                      <div *ngIf="theTravelplan" class="col-md-6">
-                        <p>text</p>
-                          <div *ngFor="let oneTourAttr of theTravelplan.tourAttractions">
-                            <p>{{ oneTourAttr.address }}</p>
+                          <div *ngFor="let oneTourAttr of travelplan.tourAttractions">
+                            <h4>{{ oneTourAttr.name }}</h4>
+                            <p><em><i class="fa fa-map-marker" aria-hidden="true"></i>{{ oneTourAttr.address }}</em></p>
+                            <p>{{ oneTourAttr.about }}</p>
                           </div>
-                      </div>
                     </div>
                 </div>
             </div>
@@ -178,11 +150,6 @@
     </div>
 </div>
 
-
-
 <!-- / ADDED -->
-
-
-
 
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuErDWxWud1Z7NLJgy0R5M2HmF6wlImcE&libraries=places" async defer></script> -->
