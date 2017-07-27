@@ -4,8 +4,8 @@ import 'rxjs/add/operator/toPromise';
 
 import { environment } from '../../environments/environment';
 
-@Injectable()
-export class TravelplansService {
+  @Injectable()
+  export class TravelplansService {
 
   baseUrl: string = environment.apiUrl;
   public planId;
@@ -18,24 +18,25 @@ export class TravelplansService {
 
     getTravelplansList() {
         return this.myHttp
-          .get(
-            this.baseUrl + '/api/travelplans',
+          .get(this.baseUrl + '/api/travelplans',
             { withCredentials: true }
           )
           .toPromise()
-          .then(res => res.json());
+          .then(apiResponse => apiResponse.json());
     }
 
     get(id){
-      return this.myHttp.get(`${this.baseUrl}/api/travelplans/${id}`)
+      return this.myHttp
+        .get(`${this.baseUrl}/api/travelplans/${id}`,
+          { withCredentials: true }
+        )
         .toPromise()
         .then(apiResponse => apiResponse.json())
     }
 
     createNew(dataToSend){
       return this.myHttp
-        .post(
-          this.baseUrl + '/api/travelplans',
+        .post(this.baseUrl + '/api/travelplans',
           dataToSend,
           { withCredentials: true }
         )
@@ -47,14 +48,14 @@ export class TravelplansService {
       console.log('=============================')
       return this.myHttp
         .delete(`${this.baseUrl}/api/travelplans/${id}`,
-          { withCredentials: true })
+          { withCredentials: true }
+        )
         .toPromise()
         .then(apiResponse => apiResponse.json());
     }
 
     addPersonToList(planId, user){
-      console.log('user from front', user);
-      var usersid =  {id:user._id};
+      var usersid =  { id:user._id} ;
       return this.myHttp
         .post(`${this.baseUrl}/api/travelplans/${planId}/addfriends`,
           usersid,
@@ -66,24 +67,28 @@ export class TravelplansService {
     }
 
     getDetails(id){
-      return this.myHttp.get(`${this.baseUrl}/api/travelplans/${id}/maplocations`)
-      .toPromise()
-      .then(apiResponse => apiResponse.json());
+      return this.myHttp
+        .get(`${this.baseUrl}/api/travelplans/${id}/maplocations`,
+          { withCredentials: true }
+        )
+        .toPromise()
+        .then(apiResponse => apiResponse.json());
     }
 
-    submitTheLocation(planId, dataToSend){
+    submitTheLocation(planId, dataToSend, address){
+      console.log("NHGFCVBNJUYTRESDBHUYTRESDVBHYTRDCVBHYTFVBNJUYTRDVBHYT")
       return this.myHttp
         .post(`${this.baseUrl}/api/travelplans/${planId}`,
-          dataToSend,
-      { withCredentials: true }
-    )
-    .toPromise()
-    .then(apiResponse => apiResponse.json());
+          {
+            address: address,
+            name: dataToSend.form.controls.formAttrName._value,
+            about: dataToSend.form.controls.formAttrAbout._value
+          },
+          { withCredentials: true }
+        )
+        .toPromise()
+        .then(apiResponse => apiResponse.json());
     }
 
 
   }
-
-  //planId, name,address,city,country,about
-
-  //        { name: name, address: address, city: city, country: country, about: about },

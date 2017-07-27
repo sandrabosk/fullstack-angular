@@ -32,6 +32,7 @@ import { TravelplanDetailsComponent } from './travelplan-details/travelplan-deta
 import { AddPeopleComponent } from './add-people/add-people.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { FullscreenmapComponent } from './travelplan-details/fullscreenmap/fullscreenmap.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 @NgModule({
     imports:      [
         BrowserModule,
@@ -60,7 +61,8 @@ import { FullscreenmapComponent } from './travelplan-details/fullscreenmap/fulls
         FullScreenMapsComponent,
         GoogleMapsComponent,
         MapsComponent,
-        VectorMapsComponent
+        VectorMapsComponent,
+        CapitalizePipe
     ],
     providers: [
       SessionService,

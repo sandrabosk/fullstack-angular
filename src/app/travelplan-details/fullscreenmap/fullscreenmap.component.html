@@ -26,14 +26,14 @@
 
 .pac-card {
   /*margin: 10px 10px 0 0;*/
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
+  /*border-radius: 2px 0 0 2px;*/
+  /*box-sizing: border-box;*/
   -moz-box-sizing: border-box;
   outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  /*box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);*/
   background-color: #fff;
-  font-family: Roboto;
-  width:
+  font-family: inherit;
+  /*width: 600px;*/
 }
 
 #pac-container {
@@ -43,133 +43,144 @@
 
 .pac-controls {
   display: inline-block;
-  padding: 20px 11px;
+  padding: 10px 11px;
 }
 
 .pac-controls label {
-  font-family: Roboto;
+  font-family: inherit;
   font-size: 13px;
   font-weight: 300;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 #pac-input {
   background-color: #fff;
-  /*font-family: Roboto;*/
-  /*font-size: 15px;*/
-  /*font-weight: 300;*/
-  /*margin-left: 12px;*/
-  /*padding: 0 11px 0 13px;*/
   text-overflow: ellipsis;
-  width: 400px;
+  /*width: 400px;*/
 }
 
 #pac-input:focus {
   border-color: #4d90fe;
 }
 
-#title {
-  color: #fff;
-  background-color: #4d90fe;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
-}
-.k{
-  border-top: 3px red dotted;
-}
-
 </style>
 
+<!-- MAP DIV -->
+<div class="row" id="map"></div>
+<!-- / MAP DIV -->
 
-<!-- <hr>  -->
-<div class="row pac-card" id="pac-card">
 
-  <div class="" id="pac-card" style="background-color:white;">
-    <div id="title">
-      Autocomplete search
+<!-- ADDDED -->
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="title text-center">TOURISTY THINGS</h3>
+        <br />
+        <div class="nav-center">
+            <ul class="nav nav-pills nav-pills-warning nav-pills-icons" role="tablist">
+                <!--
+    color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+-->
+                <li>
+                    <a href="#description-1" role="tab" data-toggle="tab">
+                        <i class="material-icons">info</i> Search
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#schedule-1" role="tab" data-toggle="tab">
+                        <i class="material-icons">location_on</i> Location
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane" id="description-1">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Search through <span style="color:orange; font-weight: bold;">{{theTravelplan.city | capitalize }} </span> </h4>
+                    </div>
+                    <div class="card-content pac-card" id="pac-card">
+                      <div>
+
+                        <!-- <div class="pac-card" id="pac-card" style="background-color:white; border: 3px dotted green;"> -->
+                          <!-- <div class="col-md-12"> -->
+                          <!-- <div id="title"></div> -->
+                            <div class="col-md-12 pac-controls" id="type-selector" style="margin-left:200px;">
+                              <input type="radio" name="type" id="changetype-all" checked="checked">
+                              <label for="changetype-all">All</label>
+                              <input type="radio" name="type" id="changetype-establishment">
+                              <label for="changetype-establishment">Establishments</label>
+                              <input type="radio" name="type" id="changetype-address">
+                              <label for="changetype-address">Addresses</label>
+                            </div>
+                          <!-- </div> -->
+                          <div id="pac-container">
+                            <form  (ngSubmit)="submitLocation(theTravelplan._id, myForm2)" #myForm2="ngForm" class="form-horizontal">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tp-name-input"></label>
+                                        <input id="tp-name-input" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="pac-input"></label>
+                                        <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal" class="form-control" required>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tp-city-input"></label>
+                                        <input id="tp-city-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity" class="form-control" required>
+                                    </div>
+                                </div> -->
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="tp-country-input"></label>
+                                        <input id="tp-country-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry" class="form-control" required>
+                                    </div>
+                                </div> -->
+                                <label for="tp-about-input"></label>
+                                <textarea id="tp-about-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2" class="form-control"></textarea>
+                            <!-- <input id="pac-input" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName"> -->
+                            <!-- <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal"> -->
+                            <!-- <input id="pac-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity"> -->
+                            <!-- <input id="pac-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry"> -->
+                            <!-- <textarea id="pac-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2"></textarea> -->
+                            <button type="submit" name="button" class="btn btn-md btn-warning pull-right">Add attraction</button>
+                            </form>
+                            </div>
+                              <div id="infowindow-content">
+                                <img src="" width="16" height="16" id="place-icon">
+                                <span id="place-name"  class="title"></span><br>
+                                <span id="place-address"></span>
+                              </div>
+                            <!-- </div> -->
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane active" id="schedule-1">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Locations</h4>
+                    </div>
+                    <div class="card-content">
+                      <div *ngIf="theTravelplan" class="col-md-6">
+                        <p>text</p>
+                          <div *ngFor="let oneTourAttr of theTravelplan.tourAttractions">
+                            <p>{{ oneTourAttr.address }}</p>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-      <div class="col-md-12" id="type-selector" class="pac-controls">
-        <input type="radio" name="type" id="changetype-all" checked="checked">
-        <label for="changetype-all">All</label>
-
-        <input type="radio" name="type" id="changetype-establishment">
-        <label for="changetype-establishment">Establishments</label>
-
-        <input type="radio" name="type" id="changetype-address">
-        <label for="changetype-address">Addresses</label>
-
-        <!-- <input type="radio" name="type" id="changetype-geocode"> -->
-        <!-- <label for="changetype-geocode">Geocodes</label> -->
-      </div>
-
-
-      <form  (ngSubmit)="submitLocation(travelplanId, myForm2)" #myForm2="ngForm" class="form-horizontal">
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="tp-name-input"></label>
-                  <input id="tp-name-input" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName" class="form-control" required>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="pac-input"></label>
-                  <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal" class="form-control" required>
-              </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="tp-city-input"></label>
-                  <input id="tp-city-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity" class="form-control" required>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <label for="tp-country-input"></label>
-                  <input id="tp-country-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry" class="form-control" required>
-              </div>
-          </div>
-        </div>
-        <div class="row">
-          <label for="tp-about-input"></label>
-          <textarea id="tp-about-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2" class="form-control"></textarea>
-        </div>
-
-      <!-- <input id="pac-input" type="text" placeholder="Enter the name" [(ngModel)]="formAttrName" name="formAttrName"> -->
-      <!-- <input id="pac-input" type="text" placeholder="Enter a location" name="formInputAddReal"> -->
-      <!-- <input id="pac-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity"> -->
-      <!-- <input id="pac-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry"> -->
-      <!-- <textarea id="pac-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2"></textarea> -->
-      <button type="submit" name="button" class="btn btn-sm btn-rose">Add attraction</button>
-      </form>
-  </div>
-  <div id="infowindow-content">
-    <img src="" width="16" height="16" id="place-icon">
-    <span id="place-name"  class="title"></span><br>
-    <span id="place-address"></span>
-  </div>
 </div>
 
 
-<div class="row k" id="map"></div>
 
-
-<div *ngIf="travelplan" class="col-md-6">
-  <div *ngIf="maplocations">
-    <div *ngFor="let maplocation of maplocations">
-      <p>{{ maplocation.name }}</p>
-    </div>
-
-  </div>
-</div>
-
-
-
+<!-- / ADDED -->
 
 
 

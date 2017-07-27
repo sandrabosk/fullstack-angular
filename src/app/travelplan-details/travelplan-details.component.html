@@ -1,18 +1,10 @@
-<style media="screen">
-.map-search{
-  margin-left: 10%;
-  border: 3px dotted black;
-}
-</style>
-
-
 <div class="main-content">
   <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
 
-    <div class="container-fluid" *ngIf="travelplan">
+    <div *ngIf="travelplan">
         <div class="header text-center">
             <h3 class="title">Details for travel plan to {{ travelplan.city }}, {{ travelplan.country }}</h3>
-            <div style="margin-top:100px;">
+            <div>
               <button (click) ="deleteTravelplan()">
                 Delete
               </button>
@@ -129,8 +121,8 @@
 
         </div>
         <hr>
-        <div class="map-search" style="height:500px !important; width:750px !important;">
-          <fullscreen-map-cmps [travelplanId]="travelplan._id"></fullscreen-map-cmps>
+        <div class="container" style="height:450px !important; width:800px !important; margin-left:100px;">
+          <fullscreen-map-cmps [theTravelplan]="travelplan"></fullscreen-map-cmps>
         </div>
           <!-- <fullscreen-map-cmp ></fullscreen-map-cmp> -->
 

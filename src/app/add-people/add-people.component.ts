@@ -16,7 +16,7 @@ export class AddPeopleComponent implements OnInit {
   public user;
   public users: any[] = [];
   public errorMessage: string = '';
-  public list: {firstName: string, lastName: string}[] = [];
+  // public list: {firstName: string, lastName: string}[] = [];
 
   constructor(
     private myTravelplansService: TravelplansService,
@@ -33,10 +33,10 @@ export class AddPeopleComponent implements OnInit {
         this.errorMessage = 'Displaying users went wrong.'
       })
       console.log('travelplan', this.travelplan);
-    this.myRoute.params.subscribe((params)=>{
-      this.getTravelplanDetails(params['id']);
-      console.log('paramsId from add user', params['id'])
-    });
+      this.myRoute.params.subscribe((params)=>{
+        this.getTravelplanDetails(params['id']);
+        console.log('paramsId from add user', params['id'])
+      });
   }
   getTravelplanDetails(id) {
     this.myTravelplansService.get(id)

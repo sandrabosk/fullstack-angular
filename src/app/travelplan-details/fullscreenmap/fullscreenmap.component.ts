@@ -13,7 +13,10 @@
 //   }
 //
 // }
+
+
 declare var google:any;
+
 import {Component, OnInit,AfterViewInit,Input, Output, EventEmitter, trigger,state,style,transition,animate,keyframes} from '@angular/core';
 import { TravelplansService } from '../../services/travelplans.service';
 import { SessionService } from '../../services/session.service';
@@ -21,47 +24,46 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
-interface marker {
-	lat: number;
-	lng: number;
-	label?: string;
-	draggable?: boolean;
-}
-@Component({
-    moduleId: module.id,
-    selector: 'fullscreen-map-cmps',
-    templateUrl: 'fullscreenmap.component.html',
-    animations: [
-        trigger('maps', [
-            state('*', style({
-                opacity: 1})),
-                transition('void => *', [
-                    style({opacity: 0,
-                    }),
-                    animate('1s 0s ease-out')
-                ])
-        ])
-    ]
-})
+	interface marker {
+		lat: number;
+		lng: number;
+		label?: string;
+		draggable?: boolean;
+	}
+	@Component({
+	    moduleId: module.id,
+	    selector: 'fullscreen-map-cmps',
+	    templateUrl: 'fullscreenmap.component.html',
+	    animations: [
+	        trigger('maps', [
+	            state('*', style({
+	                opacity: 1})),
+	                transition('void => *', [
+	                    style({opacity: 0,
+	                    }),
+	                    animate('1s 0s ease-out')
+	                ])
+	        ])
+	    ]
+	})
 
 export class FullscreenmapComponent implements OnInit{
-	@Input() travelplanId: any;
 
+	@Input() theTravelplan: any;
 
 	public travelplan: Object;
 	public location: string;
 	public formAttrName: string;
 	public address: string;
-	public formAttrCity: string;
-	public formAttrCountry: string;
 	public formAttrAbout: string;
 	public errorMessage: string = '';
 
 
 	constructor(
+		private myRouter: Router,
 		private myRoute: ActivatedRoute,
 		private mySessionService: SessionService,
-		private myTravelplansService: TravelplansService,
+		private myTravelplansService: TravelplansService
 	){}
 
     ngOnInit(){
@@ -70,9 +72,8 @@ export class FullscreenmapComponent implements OnInit{
 				this.getTheDetails(params['id']);
 				console.log('paramsId', params['id'])
 			});
-			this.myRoute.params.subscribe((params)=>this.travelplan = {});
 
-
+		//GOOGLE MAPS THINGS:
 		console.log('init')
 		var mapComponent = this;
 		var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
@@ -105,7 +106,7 @@ export class FullscreenmapComponent implements OnInit{
 				  var types = document.getElementById('type-selector');
 				  // var strictBounds = document.getElementById('strict-bounds-selector');
 
-				  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+				  // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
 				  var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -176,7 +177,6 @@ export class FullscreenmapComponent implements OnInit{
 				}
 				initMap();
 
-
 	}
 
 	getTheDetails(id) {
@@ -190,19 +190,21 @@ export class FullscreenmapComponent implements OnInit{
 	}
 
 
-	submitLocation(travelplanId,formData){
-			// this.myTravelplansService.submitTheLocation(this.travelplanId, formData)
-			// 	.then((locationFromApi)=>{
-			// 		console.log('sumbit in component');
-			//
-			// 		this.location = locationFromApi
-			// 	})
-			// 	.catch((err)=>{
-	    //     this.errorMessage = 'There has been an error so person is not added.'
-	    //   })
-
-			alert(this.travelplanId);
+	submitLocation(planId, formData){
+		// console.log('form data from map', formData)
+		// console.log('address', this.address)
+		// console.log('planId', planId)
+			this.myTravelplansService.submitTheLocation(planId,formData, this.address)
+				.then((res)=>{
+					this.theTravelplan.tourAttractions.push(res.new);
+					// this.myRouter.navigate([`/travelplans/${planId}/maplocations`])
+				})
+				.catch((err)=>{
+	        this.errorMessage = 'There has been an error so person is not added.'
+	      })
+			// alert(this.formAttrAbout);
 	}
+
 
 }
 // this.formAttrName, this.address, this.formAttrCity, this.formAttrCountry, this.formAttrAbout
