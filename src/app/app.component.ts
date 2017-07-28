@@ -47,4 +47,14 @@ export class AppComponent implements OnInit{
         }
         $.material.init();
     }
+
+    logMeOut() {
+      this.mySession.logout()
+        .then(() => {
+            this.myRouter.navigate(['/']);
+            this.isLoggedIn = false;
+        })
+        .catch(() => {});
+      }
+
 }

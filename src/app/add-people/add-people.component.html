@@ -1,18 +1,46 @@
-<div>
-  <label for="people-search">Search</label>
-  <input id="people-search" type="text" [(ngModel)]="pattern">
+<style media="screen">
+ul li {
+  background-color: #F8F8F8;
+  margin: 2px;
+}
+ul li{
+  list-style: none;
+}
+ul:hover li {
+  opacity: .5;
+}
+
+ul li:hover {
+  opacity: 1;
+}
+</style>
+
+<div class="form-group form-search is-empty">
+  <label for="people-search"></label>
+  <input id="people-search" type="text" [(ngModel)]="pattern" class="form-control" placeholder="Search">
+  <span class="material-input"></span>
 </div>
 
 <div *ngIf="users">
   <div *ngIf="travelplan">
     <div *ngFor="let user of users | search:'firstName':pattern; let i= index;">
-      <p>{{ user.firstName }} {{ user.lastName }} <button (click)="pushTheUser(travelplan._id, user)">Add</button></p>
+      <p>{{ user.firstName }} {{ user.lastName }} <button (click)="pushTheUser(travelplan._id, user)" class="btn btn-info btn-round btn-fab btn-fab-mini">+</button></p>
     </div>
+    <!-- <table class="table table-hover"> -->
+      <ul style="margin-left:-40px;">
+        <li *ngFor="let oneUser of travelplan.travelFriends">
+          <div class="row">
+            <div class="photo col-sm-3" *ngIf="oneUser.image" >
+              <img class="img-circle" [src]="oneUser.image" style="width:40px; height:40px;" />
+            </div>
+            <div class="col-sm-9">
+              <span>{{ oneUser.firstName }}</span>
+              <span>{{ oneUser.lastName }}</span>
+            </div>
+          </div>
+        </li>
 
-    <h3>Added friends</h3>
-    <li *ngFor="let oneUser of travelplan.travelFriends">
-      <span>{{ oneUser.firstName }}</span>
-      <span>{{ oneUser.lastName }}</span>
-    </li>
+      </ul>
+    <!-- </table> -->
   </div>
 </div>

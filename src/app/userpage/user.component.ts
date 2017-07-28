@@ -78,10 +78,10 @@ import 'rxjs/add/operator/toPromise';
  ){}
 
       ngOnInit() {
-        this.mySession.checkLogin().then(( userInfo )=> {
+
+        this.mySession.checkLogin().then(( userInfo )=> { //this is very important, don't touch
           console.log(userInfo);
           return this.user = userInfo;
-
         });
       }
       updateUser(formData){

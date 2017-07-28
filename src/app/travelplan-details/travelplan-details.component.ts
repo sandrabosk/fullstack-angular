@@ -6,6 +6,7 @@ import { MapsComponent } from '../maps/maps.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { TravelplansService } from '../services/travelplans.service';
+import { SessionService } from '../services/session.service';
 
 declare var $:any;
 declare var swal:any;
@@ -23,49 +24,21 @@ export class TravelplanDetailsComponent implements OnInit {
   errorMessage: string = '';
   show: boolean = false;
 
-//fancy alert pop up
-
-// showSwal(){
-//   // if(type = 'warning-message-and-cancel'){
-//     swal({
-//             title: 'Are you sure?',
-//             text: 'You will not be able to recover this imaginary file!',
-//             type: 'warning',
-//             showCancelButton: true,
-//             confirmButtonText: 'Yes, delete it!',
-//             cancelButtonText: 'No, keep it',
-//             confirmButtonClass: "btn btn-success",
-//             cancelButtonClass: "btn btn-danger",
-//             buttonsStyling: false
-//         }).then(function() {
-//           swal({
-//             title: 'Deleted!',
-//             text: 'Your imaginary file has been deleted.',
-//             type: 'success',
-//             confirmButtonClass: "btn btn-success",
-//             buttonsStyling: false
-//             })
-//         },
-//         function(dismiss) {
-//           // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-//           if (dismiss === 'cancel') {
-//             swal({
-//               title: 'Cancelled',
-//               text: 'Your imaginary file is safe :)',
-//               type: 'error',
-//               confirmButtonClass: "btn btn-info",
-//               buttonsStyling: false
-//             })
-//           }
-//         }
-//     )
-// }
-
-
-
+  public updatedTravelplan: Object = {};
+  public name: String;
+  public country: String;
+  public city: String;
+  public startDate = new Date();
+  public endDate = new Date();
+  public transportation: String;
+  public accomodation = {
+    acAddress: '',
+    expense: ''
+  };
 
   constructor(
     private myRoute: ActivatedRoute,
+    private mySession: SessionService,
     private myTravelplansService: TravelplansService,
     private myRouter: Router
   ) { }
@@ -100,6 +73,38 @@ export class TravelplanDetailsComponent implements OnInit {
         this.errorMessage = 'There has been an error so this travel plan is not deleted.'
       })
     }
+  }
+
+  updateTravelPlan(tpId, formData){
+    console.log('tpid',tpId )
+    console.log(formData);
+    this.name = formData.form.controls.formTpName._value;
+    this.country = formData.form.controls.formCountry._value;
+    this.city = formData.form.controls.formCity._value;
+    this.startDate = formData.form.controls.formStart._value;
+    this.endDate = formData.form.controls.formEnd._value;
+    this.transportation = formData.form.controls.formTransportation._value;
+    this.accomodation.acAddress = formData.form.controls.formAccAddr._value;
+    this.accomodation.expense = formData.form.controls.formAccExpense._value;
+    this.sendUpdatedTravelplanToApi(tpId);
+  }
+  sendUpdatedTravelplanToApi(tpId){
+    this.updatedTravelplan = {
+      name: this.name,
+      country:this.country,
+      city: this.city,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      transportation: this.transportation,
+      acAddress: this.accomodation.acAddress,
+      expense: this.accomodation.expense
+    }
+    console.log('===== updated travelplan ======', this.updatedTravelplan)
+    this.myTravelplansService.updateTp(tpId,this.updatedTravelplan)
+      .then(()=>{
+        this.myRouter.navigate(['/travelplans'])
+      })
+      .catch(()=>{})
   }
 
 showThis() {

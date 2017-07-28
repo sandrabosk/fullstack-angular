@@ -62,7 +62,7 @@ export class FullscreenmapComponent implements OnInit{
 	constructor(
 		private myRouter: Router,
 		private myRoute: ActivatedRoute,
-		private mySessionService: SessionService,
+		private mySession: SessionService,
 		private myTravelplansService: TravelplansService
 	){}
 
@@ -168,32 +168,16 @@ export class FullscreenmapComponent implements OnInit{
 				      autocomplete.setTypes(types);
 				    });
 				  }
-
 				  setupClickListener('changetype-all', []);
 				  setupClickListener('changetype-address', ['address']);
 				  setupClickListener('changetype-establishment', ['establishment']);
-				  // setupClickListener('changetype-geocode', ['geocode']);
-
 				}
 				initMap();
 
 	}
 
-	// getTheDetails(id) {
-	// 	this.myTravelplansService.getDetails(id)
-	// 		.then((theTravelplanDetails) => {
-	// 			this.travelplan = theTravelplanDetails;
-	// 		})
-	// 		.catch((err) => {
-	// 			this.errorMessage = 'Could not retrieve travelplan details. Sorry.';
-	// 		});
-	// }
-
 
 	submitLocation(planId, formData){
-		// console.log('form data from map', formData)
-		// console.log('address', this.address)
-		// console.log('planId', planId)
 			this.myTravelplansService.submitTheLocation(planId,formData, this.address)
 				.then((res)=>{
 					this.travelplan.tourAttractions.push(res.new);
@@ -202,9 +186,7 @@ export class FullscreenmapComponent implements OnInit{
 				.catch((err)=>{
 	        this.errorMessage = 'There has been an error so person is not added.'
 	      })
-			// alert(this.formAttrAbout);
 	}
 
 
 }
-// this.formAttrName, this.address, this.formAttrCity, this.formAttrCountry, this.formAttrAbout

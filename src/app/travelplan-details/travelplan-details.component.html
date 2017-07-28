@@ -1,138 +1,237 @@
-<div class="main-content">
+<style media="screen">
+.bckgrdcol{
+    background-color: #fee6e6;
+  }
+</style>
+
+<div class="card bckgrdcol">
   <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
 
-    <div *ngIf="travelplan">
-        <div class="header text-center">
-            <h3 class="title">Details for travel plan to {{ travelplan.city }}, {{ travelplan.country }}</h3>
-            <div>
-              <button (click) ="deleteTravelplan()">
-                Delete
-              </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card card-plain">
-                    <div class="card-content">
-                        <ul class="timeline">
-                            <li>
-                                <div class="timeline-badge success">
-                                    <i class="material-icons">flight_takeoff</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-success">{{ travelplan.startDate | date:'MM/dd/yyyy' }}</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                      <p></p>
-                                    </div>
-                                    <h6>
-                                        <i class="ti-time"></i> Let's do it!
-                                    </h6>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge info">
-                                    <i class="material-icons">home</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-info">Accomodation</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>We are staying at <span style="color:green"><strong>{{ travelplan.accomodation['address'] }}</strong></span></p>
-                                        <p>Total amount for this trip's accomodation is <span style="color:green"><strong>{{ travelplan.accomodation['expense'] }} $</strong></span></p>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-badge info">
-                                    <i class="material-icons">train</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-info">Transportation</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p> {{ travelplan.transportation }} </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- added  -->
-
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge info">
-                                    <i class="material-icons">people</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-info">Fellow travellers</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <div class="dropdown pull-left">
-                                            <button type="button" (click)="showThis()" class="btn btn-round btn-info">
-                                                <i class="material-icons">assignment_ind</i>
-                                                Add people
-                                            </button>
-                                            <hr>
-                                            <!--  add-people -->
-                                            <div *ngIf="show">
-                                              <app-add-people [travelplan]="travelplan"></app-add-people>
+    <div class="card-content" *ngIf="travelplan">
+      <div class="header text-center">
+          <h3 class="title">{{ travelplan.name }} -
+              <small>{{ travelplan.city }}, {{ travelplan.country }}</small>
+          </h3>
+      </div>
+        <ul class="nav nav-pills nav-pills-warning">
+            <li class="active">
+                <a href="#pill1" data-toggle="tab">View</a>
+            </li>
+            <li>
+                <a href="#pill2" data-toggle="tab">Edit</a>
+            </li>
+            <li style="margin-top:-18px;">
+              <a href="#pill3"><button class="btn btn-danger btn-round" (click) ="deleteTravelplan()">Delete</button></a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="pill1">
+              <div class="main-content">
+                <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card card-plain">
+                                  <div class="card-content">
+                                      <ul class="timeline">
+                                          <li>
+                                              <div class="timeline-badge success">
+                                                <i class="material-icons">flight_takeoff</i>
+                                              </div>
+                                              <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                  <span class="label label-success">{{ travelplan.startDate | date:'MM/dd/yyyy' }}</span>
+                                                </div>
+                                                <div class="timeline-body">
+                                                  <p></p>
+                                                </div>
+                                                <h6>
+                                                  <i class="ti-time"></i> Let's do it!
+                                                </h6>
+                                              </div>
+                                          </li>
+                                          <li class="timeline-inverted">
+                                            <div class="timeline-badge info">
+                                              <i class="material-icons">home</i>
                                             </div>
-                                            <!--  end add-people -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end added  -->
-                            <li>
-                                <div class="timeline-badge warning">
-                                  <i class="material-icons">local_see</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-warning">Touristy things go here</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p> Attraction 1 </p>
-                                        <p> Attraction 2 </p>
-                                        <p> Attraction 3 </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge danger">
-                                    <i class="material-icons">flight_land</i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <span class="label label-danger">{{ travelplan.endDate | date:'MM/dd/yyyy' }}</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>End :( </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <span class="label label-info">Accomodation</span>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p>We are staying at <span style="color:green"><strong>{{ travelplan.accomodation['acAddress'] }}</strong></span></p>
+                                                <p>Total amount for this trip's accomodation is <span style="color:green"><strong>{{ travelplan.accomodation['expense'] }} $</strong></span></p>
+                                              </div>
+                                            </div>
+                                          </li>
+                                          <li>
+                                            <div class="timeline-badge info">
+                                                <i class="material-icons">train</i>
+                                            </div>
+                                            <div class="timeline-panel">
+                                              <div class="timeline-heading">
+                                                <span class="label label-info">Transportation</span>
+                                              </div>
+                                              <div class="timeline-body">
+                                                <p> {{ travelplan.transportation }} </p>
+                                              </div>
+                                            </div>
+                                          </li>
+                                        <!-- added  -->
+
+                                          <li class="timeline-inverted">
+                                              <div class="timeline-badge info">
+                                                  <i class="material-icons">people</i>
+                                              </div>
+                                              <div class="timeline-panel">
+                                                <div class="row">
+
+                                                  <div class="col-sm-6 timeline-heading">
+                                                      <span class="label label-info">Fellow travellers</span>
+                                                  </div>
+                                                  <div class="col-sm-6 timeline-body">
+                                                      <div class="dropdown pull-left">
+                                                          <button type="button" (click)="showThis()" class="btn btn-round btn-info btn-sm">
+                                                              <i class="material-icons">assignment_ind</i>
+                                                              See the list
+                                                          </button>
+                                                        <!--  add-people -->
+                                                          <div *ngIf="show">
+                                                            <app-add-people [travelplan]="travelplan"></app-add-people>
+                                                          </div>
+                                                        <!--  end add-people -->
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </li>
+                                          <li>
+                                              <div class="timeline-badge danger">
+                                                  <i class="material-icons">flight_land</i>
+                                              </div>
+                                              <div class="timeline-panel">
+                                                  <div class="timeline-heading">
+                                                      <span class="label label-danger">{{ travelplan.endDate | date:'MM/dd/yyyy' }}</span>
+                                                  </div>
+                                                  <div class="timeline-body">
+                                                      <p>End :( </p>
+                                                  </div>
+                                              </div>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="container" style="height:450px !important; width:800px !important; margin-left:100px;">
+                        <fullscreen-map-cmps [travelplan]="travelplan"></fullscreen-map-cmps>
+                      </div>
                 </div>
+              </div>
             </div>
+<!--======= edit travel plan ===========================================================-->
+            <div class="tab-pane" id="pill2">
+              <div class="main-content">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="card">
+                                <!-- form starts -->
+                                  <form (ngSubmit)="updateTravelPlan(travelplan._id, myForm3)" #myForm3="ngForm" class="form-horizontal">
+                                      <div class="card-header card-header-text" data-background-color="rose">
+                                          <label for="tp-name-input"></label>
+                                          <input id="tp-name-input" type="text" [(ngModel)]="formTpName" name="formTpName" class="form-control" value="{{ travelplan.name }}" required>
+                                      </div>
+                                      <!-- fields start -->
+                                      <div class="card-content" style="margin-right:100px;">
+                                          <div class="row">
+                                              <label class="col-sm-2 label-on-left">Country</label>
+                                              <div class="col-md-4">
+                                                  <div class="form-group label-floating is-empty">
+                                                      <label for="country-input" class="control-label"></label>
+                                                      <input id="country-input" type="text" [(ngModel)]="formCountry" name="formCountry" class="form-control" value="{{ travelplan.country }}" required>
+                                                  </div>
+                                              </div>
+                                              <label class="col-sm-2 label-on-left">City</label>
+                                              <div class="col-sm-4">
+                                                  <div class="form-group label-floating is-empty">
+                                                      <label for="city-input"class="control-label"></label>
+                                                      <input for="city-input" type="text" [(ngModel)]="formCity" name="formCity" class="form-control" value="{{ travelplan.city }}" required>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!-- date and time picker -->
+                                          <div class="row up">
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                                <div class="card">
+                                                    <div class="card-header card-header-icon" data-background-color="rose">
+                                                        <i class="material-icons">today</i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <div class="form-group">
+                                                            <label for="start-date-input"class="label-control">Start date:</label>
+                                                            <input id="start-date-input" type="date" [(ngModel)]="formStart" name="formStart" class="form-control" value="{{ travelplan.startDate }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 col-sm-offset-2">
+                                                <div class="card">
+                                                    <div class="card-header card-header-icon" data-background-color="rose">
+                                                        <i class="material-icons">today</i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <div class="form-group">
+                                                            <label for="end-date-input"class="label-control">End date:</label>
+                                                            <input id="end-date-input" type="date" [(ngModel)]="formEnd" name="formEnd" class="form-control" value="{{ travelplan.endDate }}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                      <!-- date and time picker ends here -->
 
+                                      <!--  Transportation details -->
+                                          <div class="row">
+                                              <label class="col-sm-2 label-on-left">Transportation details:</label>
+                                              <div class="col-md-10">
+                                                  <div class="form-group label-floating is-empty">
+                                                      <label for="transportation-input" class="control-label"></label>
+                                                      <textarea id="transportation-input" class="form-control" [(ngModel)]="formTransportation" name="formTransportation" value="{{ travelplan.transportation }}" rows="4"></textarea>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      <!--  Transportation details ends here -->
+                                      <!--  accomodation details -->
+                                          <div class="row">
+                                              <label class="col-sm-2 label-on-left">Accomodation details:</label>
+                                                  <div class="col-sm-10">
+                                                      <div class="form-group is-empty">
+                                                          <label for="acc-addr-input" class="control-label"></label>
+                                                          <input id="acc-addr-input" type="text" [(ngModel)]="formAccAddr" name="formAccAddr" class="form-control" value="{{ travelplan.accomodation['acAddress'] }}" required>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                            <div class="row">
+                                              <label class="col-sm-2 label-on-left"></label>
+                                                  <div class="col-sm-4">
+                                                      <div class="form-group is-empty">
+                                                          <label for="acc-expense-input" class="control-label"></label>
+                                                          <input for="acc-expense-input" type="number" [(ngModel)]="formAccExpense" name="formAccExpense" class="form-control"  value="{{ travelplan.accomodation['expense'] }}" required>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                    <!--  accomodation details ends here -->
+                                          <button type="submit" class="btn btn-rose pull-right">Save changes</button>
+                                      </div>
+                                <!-- fields end -->
+                                  </form>
+                          <!-- form ends -->
+                              </div>
+                          </div>
+                    </div>
+              </div>
+            </div>
         </div>
-        <hr>
-        <div class="container" style="height:450px !important; width:800px !important; margin-left:100px;">
-          <fullscreen-map-cmps [travelplan]="travelplan"></fullscreen-map-cmps>
-        </div>
-          <!-- <fullscreen-map-cmp ></fullscreen-map-cmp> -->
-
     </div>
-
-
 </div>
-
-
-
-
-
 <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuErDWxWud1Z7NLJgy0R5M2HmF6wlImcE&libraries=places" async defer></script> -->

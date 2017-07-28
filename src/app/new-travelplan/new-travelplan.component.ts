@@ -20,13 +20,14 @@ declare var $:any;
 export class NewTravelplanComponent implements OnInit {
 
   public newTravelPlan: Object;
+  public name: String;
   public country: String;
   public city: String;
   public startDate = new Date();
   public endDate = new Date();
   public transportation: String;
   public accomodation = {
-    address: '',
+    acAddress: '',
     expense: ''
   };
   constructor(
@@ -43,40 +44,36 @@ export class NewTravelplanComponent implements OnInit {
 
   createNewTravelPlan(formData){
     console.log(formData);
-
+    this.name = formData.form.controls.formTpName._value;
     this.country = formData.form.controls.formCountry._value;
     this.city = formData.form.controls.formCity._value;
     this.startDate = formData.form.controls.formStart._value;
     this.endDate = formData.form.controls.formEnd._value;
     this.transportation = formData.form.controls.formTransportation._value;
-    this.accomodation.address = formData.form.controls.formAccAddr._value;
+    this.accomodation.acAddress = formData.form.controls.formAccAddr._value;
     this.accomodation.expense = formData.form.controls.formAccExpense._value;
     this.sendNewTravelPlanToApi();
   }
   sendNewTravelPlanToApi(){
     this.newTravelPlan = {
+      name: this.name,
       country:this.country,
       city: this.city,
       startDate: this.startDate,
       endDate: this.endDate,
       transportation: this.transportation,
       // this.accomodation["address"] is the same as this under
-      address: this.accomodation.address,
+      acAddress: this.accomodation.acAddress,
       expense: this.accomodation.expense
-
-
     }
-    console.log('address data:',
-      this.accomodation["address"],
-      this.accomodation["expense"]
-    )
     this.myTravelplansService.createNew(this.newTravelPlan).then(()=>{
+      this.name = "";
       this.country = "";
       this.city = "";
       this.startDate = new Date();
       this.endDate = new Date();
       this.transportation = "";
-      this.accomodation["address"] = "";
+      this.accomodation["acAddress"] = "";
       this.accomodation["expense"] = "";
       this.newTravelPlan = {};
       this.myRouter.navigate(['/travelplans'])

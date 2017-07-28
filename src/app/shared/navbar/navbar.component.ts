@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
+import { Component, OnInit, Input, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
 import { ROUTES } from '../.././sidebar/sidebar-routes.config';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { SessionService } from '../../services/session.service';
 var misc:any ={
     navbar_menu_visible: 0,
     active_collapse: true,
@@ -15,6 +16,7 @@ declare var $: any;
 })
 
 export class NavbarComponent implements OnInit{
+
     private listTitles: any[];
     location: Location;
     private nativeElement: Node;
@@ -23,7 +25,8 @@ export class NavbarComponent implements OnInit{
 
     @ViewChild("navbar-cmp") button;
 
-    constructor(location:Location, private renderer : Renderer, private element : ElementRef) {
+    constructor(location:Location, private renderer : Renderer, private element : ElementRef,
+    private myRouter: Router, private mySession: SessionService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;

@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 
   baseUrl: string = environment.apiUrl;
   public planId;
-
+  public tpId;
 
   constructor(
     private myHttp: Http
@@ -66,17 +66,7 @@ import { environment } from '../../environments/environment';
 
     }
 
-    // getDetails(id){
-    //   return this.myHttp
-    //     .get(`${this.baseUrl}/api/travelplans/${id}/maplocations`,
-    //       { withCredentials: true }
-    //     )
-    //     .toPromise()
-    //     .then(apiResponse => apiResponse.json());
-    // }
-
     submitTheLocation(planId, dataToSend, address){
-      console.log("NHGFCVBNJUYTRESDBHUYTRESDVBHYTRDCVBHYTFVBNJUYTRDVBHYT")
       return this.myHttp
         .post(`${this.baseUrl}/api/travelplans/${planId}`,
           {
@@ -88,6 +78,15 @@ import { environment } from '../../environments/environment';
         )
         .toPromise()
         .then(apiResponse => apiResponse.json());
+    }
+
+    updateTp(tpId, dataToSend){
+      return this.myHttp
+        .post(`${this.baseUrl}/api/travelplans/${tpId}/edit`, dataToSend,
+        { withCredentials: true }
+      )
+      .toPromise()
+      .then(apiResponse => apiResponse.json());
     }
 
 

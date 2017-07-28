@@ -8,10 +8,10 @@ import {
 
 import { MapsRoutes } from './maps.routing';
 
-import { FullScreenMapsComponent } from './fullscreenmap/fullscreenmap.component';
-import { GoogleMapsComponent } from './googlemaps/googlemaps.component';
-import { VectorMapsComponent } from './vectormaps/vectormaps.component';
-import { MapsComponent } from './maps.component';
+// import { FullScreenMapsComponent } from './fullscreenmap/fullscreenmap.component';
+// import { GoogleMapsComponent } from './googlemaps/googlemaps.component';
+// import { VectorMapsComponent } from './vectormaps/vectormaps.component';
+// import { MapsComponent } from './maps.component';
 
 
 @NgModule({
@@ -24,10 +24,10 @@ import { MapsComponent } from './maps.component';
     })
   ],
   declarations: [
-      FullScreenMapsComponent,
-      GoogleMapsComponent,
-      VectorMapsComponent,
-      MapsComponent
+      // FullScreenMapsComponent,
+      // GoogleMapsComponent,
+      // VectorMapsComponent,
+      // MapsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

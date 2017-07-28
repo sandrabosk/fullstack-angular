@@ -1,15 +1,22 @@
+<style media="screen">
+  .up{
+    margin-top: 50px;
+  }
+</style>
+
+
 <div class="main-content">
-    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                   <!-- form starts -->
                     <form (ngSubmit)="createNewTravelPlan(myForm1)" #myForm1="ngForm" class="form-horizontal">
                         <div class="card-header card-header-text" data-background-color="rose">
-                            <h4 class="card-title"><i class="material-icons">contacts</i><i>Create a travel plan</i></h4>
+                            <label for="tp-name-input"></label>
+                            <input id="tp-name-input" type="text" [(ngModel)]="formTpName"name="formTpName" class="form-control" placeholder="Plan name" required>
                         </div>
                         <!-- fields start -->
-                        <div class="card-content">
+                        <div class="card-content" style="margin-right:100px;">
                             <div class="row">
                                 <label class="col-sm-2 label-on-left">Country</label>
                                 <div class="col-md-4">
@@ -27,8 +34,8 @@
                                 </div>
                             </div>
                             <!-- date and time picker -->
-                            <div class="row">
-                              <div class="col-sm-4">
+                            <div class="row up">
+                              <div class="col-sm-4 col-sm-offset-2">
                                   <div class="card">
                                       <div class="card-header card-header-icon" data-background-color="rose">
                                           <i class="material-icons">today</i>
@@ -41,7 +48,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="col-sm-4">
+                              <div class="col-sm-4 col-sm-offset-2">
                                   <div class="card">
                                       <div class="card-header card-header-icon" data-background-color="rose">
                                           <i class="material-icons">today</i>
@@ -55,9 +62,9 @@
                                   </div>
                               </div>
                             </div>
-                            <!-- date and time picker ends here -->
+                        <!-- date and time picker ends here -->
 
-                            <!--  Transportation details -->
+                        <!--  Transportation details -->
                             <div class="row">
                                 <label class="col-sm-2 label-on-left">Transportation details:</label>
                                 <div class="col-md-10">
@@ -67,10 +74,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--  Transportation details ends here -->
-
-                            <!--  accomodation details -->
-
+                        <!--  Transportation details ends here -->
+                        <!--  accomodation details -->
                             <div class="row">
                                 <label class="col-sm-2 label-on-left">Accomodation details:</label>
                                     <div class="col-sm-10">
@@ -83,19 +88,13 @@
                               <div class="row">
                                 <label class="col-sm-2 label-on-left"></label>
                                     <div class="col-sm-4">
-                                        <div class="form-group label-floating is-empty">
+                                        <div class="form-group is-empty">
                                             <label for="acc-expense-input"class="control-label"></label>
-                                            <input for="acc-expense-input" type="number" [(ngModel)]="formAccExpense" name="formAccExpense" class="form-control" placeholder="Amount" required>
+                                            <input for="acc-expense-input" type="number" [(ngModel)]="formAccExpense" name="formAccExpense" class="form-control" placeholder="$ Amount" required>
                                         </div>
                                     </div>
                                 </div>
-
                       <!--  accomodation details ends here -->
-
-
-            <!-- disabled field so that users who are added can not change it. Only the creator of the plan can change it. -->
-
-
                             <button type="submit" class="btn btn-rose pull-right">Create</button>
                         </div>
                   <!-- fields end -->
@@ -103,6 +102,5 @@
             <!-- form ends -->
                 </div>
             </div>
-        </div>
-    </div>
+      </div>
 </div>

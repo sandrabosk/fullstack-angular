@@ -1,7 +1,4 @@
 <style>
- div{
-  color: red;
-}
 
 #map {
   /*overflow: scroll !important;*/
@@ -70,12 +67,12 @@
     <div class="col-md-12">
         <div class="nav-center">
             <ul class="nav nav-pills nav-pills-danger nav-pills-icons" role="tablist">
-                <li>
+                <li class="active">
                     <a href="#description-1" role="tab" data-toggle="tab">
                         <i class="material-icons">info</i> Search
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#schedule-1" role="tab" data-toggle="tab">
                         <i class="material-icons">location_on</i> Location
                     </a>
@@ -83,10 +80,10 @@
             </ul>
         </div>
         <div class="tab-content">
-            <div class="tab-pane" id="description-1">
+            <div class="tab-pane active" id="description-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Save the spots in <span style="color:orange; font-weight: bold;">{{travelplan.city | capitalize }} </span> </h4>
+                        <h4 class="card-title">Save the spots in <span style="color:#4286f4; font-weight: bold;">{{travelplan.city | capitalize }} </span> </h4>
                     </div>
                     <div class="card-content pac-card" id="pac-card">
                       <div>
@@ -119,7 +116,7 @@
                             <!-- <input id="pac-input" type="text" placeholder="Enter the city" [(ngModel)]="formAttrCity" name="formAttrCity"> -->
                             <!-- <input id="pac-input" type="text" placeholder="Enter the country" [(ngModel)]="formAttrCountry" name="formAttrCountry"> -->
                             <!-- <textarea id="pac-input" placeholder="About this attraction" [(ngModel)]="formAttrAbout" name="formAttrAbout" rows="2"></textarea> -->
-                            <button type="submit" name="button" class="btn btn-fill btn-wd btn-warning pull-right">Add attraction</button>
+                            <button type="submit" name="button" class="btn btn-fill btn-wd btn-danger pull-right">Add attraction</button>
                             </form>
                             </div>
                               <div id="infowindow-content">
@@ -132,17 +129,27 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane active" id="schedule-1">
+            <div class="tab-pane" id="schedule-1">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Locations</h4>
                     </div>
-                    <div class="card-content">
-                          <div *ngFor="let oneTourAttr of travelplan.tourAttractions">
-                            <h4>{{ oneTourAttr.name }}</h4>
-                            <p><em><i class="fa fa-map-marker" aria-hidden="true"></i>{{ oneTourAttr.address }}</em></p>
-                            <p>{{ oneTourAttr.about }}</p>
+                      <div class="card-content">
+                        <div *ngFor="let oneTourAttr of travelplan.tourAttractions">
+                          <div class="col-md-4">
+                              <div class="card">
+                                  <div class="card-content">
+                                    <h6 class="category"><strong>{{ oneTourAttr.name }}</strong></h6>
+                                    <p>{{ oneTourAttr.about }}</p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <div>
+                                        <a href="www.google.com/maps/place/{{oneTourAttr.address}}" style="color:#4286f4;"><em><i class="fa fa-map-marker" aria-hidden="true"></i>{{ oneTourAttr.address }}</em></a>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
+                        </div>
                     </div>
                 </div>
             </div>
