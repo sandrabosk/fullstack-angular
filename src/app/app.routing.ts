@@ -11,8 +11,13 @@ NewTravelplanComponent
 export const AppRoutes: Routes = [
     {
       path: '',
-      redirectTo: '/pages/login',
+      redirectTo: 'pages/login',
       pathMatch: 'full',
+    },
+    {
+      path: 'pages/register',
+      redirectTo: 'pages/register',
+      // pathMatch: 'full',
     },
     {
       path: '',

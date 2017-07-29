@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit{
             .catch((errResponse) => {
                 const apiInfo = errResponse.json();
                 this.errorMessage = apiInfo.message;
+                this.myRouter.navigate(['/pages/login'])
             });
       }
 

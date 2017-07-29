@@ -24,16 +24,16 @@ export class AppComponent implements OnInit{
         this.isLoggedIn = true;
     });
 //=====================
-      this.mySession.checkLogin()
-        // if logged in, redirect to /lists
-        .then((userInfo) => {
-            this.myRouter.navigate(['/dashboard']);
-            this.isLoggedIn = true;
-        })
-        // else redirect to /
-        .catch((err) => {
-            this.myRouter.navigate(['/pages/login']);
-        });
+      // this.mySession.checkLogin()
+      //   // if logged in, redirect to /lists
+      //   .then((userInfo) => {
+      //       this.myRouter.navigate(['/dashboard']);
+      //       this.isLoggedIn = true;
+      //   })
+      //   // else redirect to /
+      //   .catch((err) => {
+      //       this.myRouter.navigate(['/pages/login']);
+      //   });
 
 //=====================
 
@@ -48,13 +48,13 @@ export class AppComponent implements OnInit{
         $.material.init();
     }
 
-    logMeOut() {
-      this.mySession.logout()
-        .then(() => {
-            this.myRouter.navigate(['/']);
-            this.isLoggedIn = false;
-        })
-        .catch(() => {});
-      }
+    // logMeOut() {
+    //   this.mySession.logout()
+    //     .then(() => {
+    //         this.myRouter.navigate(['/']);
+    //         this.isLoggedIn = false;
+    //     })
+    //     .catch(() => {});
+    //   }
 
 }

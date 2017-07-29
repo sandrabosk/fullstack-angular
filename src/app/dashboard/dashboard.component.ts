@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TableData } from '../md/md-table/md-table.component';
+import { SessionService } from '../services/session.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 import * as Chartist from 'chartist';
 
@@ -10,7 +13,8 @@ declare var $:any;
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, AfterViewInit{
-  // constructor(private navbarTitleService: NavbarTitleService, private notificationService: NotificationService) { }
+  constructor(private mySession: SessionService, private myRouter: Router ) { }
+
   public tableData: TableData;
   startAnimationForLineChart(chart){
       var seq, delays, durations;
@@ -69,6 +73,18 @@ export class DashboardComponent implements OnInit, AfterViewInit{
   }
   // constructor(private navbarTitleService: NavbarTitleService) { }
   public ngOnInit() {
+
+    this.mySession.checkLogin()
+      // if logged in, redirect to /lists
+      .then((userInfo) => {
+          this.myRouter.navigate(['/dashboard']);
+          // this.isLoggedIn = true;
+      })
+      // else redirect to /
+      .catch((err) => {
+          this.myRouter.navigate(['/pages/login']);
+      });
+
       this.tableData = {
           headerRow: ['ID', 'Name', 'Salary', 'Country', 'City'],
           dataRows: [
@@ -190,6 +206,9 @@ export class DashboardComponent implements OnInit, AfterViewInit{
               },
           });
    }
+
+
+
    ngAfterViewInit(){
        var breakCards = true;
        if(breakCards == true){

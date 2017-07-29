@@ -77,7 +77,7 @@ export class TravelplanDetailsComponent implements OnInit {
 
   updateTravelPlan(tpId, formData){
     console.log('tpid',tpId )
-    console.log(formData);
+    console.log("seee if we need ngmodel", formData.form.controls.formTpName._value);
     this.name = formData.form.controls.formTpName._value;
     this.country = formData.form.controls.formCountry._value;
     this.city = formData.form.controls.formCity._value;

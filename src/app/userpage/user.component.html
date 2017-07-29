@@ -1,18 +1,25 @@
 <style media="screen">
   .prof-pane{
     display: block;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     max-width: 700px;
     max-height: 300px;
   }
-  .undot li {
+  li {
     list-style: none;
+    margin: 10px;
   }
 
   .center{
     margin: auto;
-    width: 50%;  }
+    width: 50%;
+  }
+  .user-info{
+    font-size:18px;
+    margin-left:30px;
+  }
 </style>
 
 
@@ -24,7 +31,7 @@
           <form>
             <div class="card-avatar">
               <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                <div class="center fileinput-new" style="width:170px; height:170px;">
+                <div class="center fileinput-new">
                   <img *ngIf="user.image" class="img-circle" [src]="user.image" style="width:170px; height:170px;" />
                 </div>
                 <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
@@ -41,68 +48,63 @@
                   </span>
                 </div>
                 <div class="">
-                 <h4 class="card-title"> {{ user.firstName }} {{ user.lastName  }}
-                 </h4>
+                 <h4 class="card-title"><span style="text-transform: capitalize;">{{ user.firstName }}</span> <span style="text-transform: capitalize">{{ user.lastName  }}</span> </h4>
                </div>
             </div>
           </div>
         </form>
       </div>
     </div>
-
-
-        <div class="col-md-7">
-              <div class="card-content">
-                  <ul class="nav nav-pills nav-pills-rose">
-                      <li class="active">
-                          <a href="#pill1" data-toggle="tab">Profile</a>
-                      </li>
-                      <li>
-                          <a href="#pill2" data-toggle="tab">Edit profile</a>
-                      </li>
-                  </ul>
-
-            <!-- nav-1 -->
-                  <div class="tab-content">
-                      <div class="tab-pane" id="pill2">
-
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="card">
-                                <div class="card-header card-header-icon" data-background-color="rose">
-                                    <i class="material-icons">perm_identity</i>
-                                </div>
-                                <div class="card-content">
-                                    <h4 class="card-title">Edit Profile -
-                                        <small class="category">Complete your profile</small>
-                                    </h4>
-                                    <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="first-name-input" class="control-label">Fist Name</label>
-                                                  <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control" value="{{ user.firstName }}" required>
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <label for="last-name-input" class="control-label">Last Name</label>
-                                                  <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control" value="{{ user.lastName }}" required>
-                                              </div>
-                                          </div>
-                                      </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label for="email-input">Email address</label>
-                                                      <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
-                                                  </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="dob-input">Date of Birth</label>
-                                                    <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control" value="{{ user.dob | date:'MM/dd/yyyy' }}">
-                                                </div>
-                                            </div>
+    <div class="col-md-7">
+      <div class="card-content">
+        <ul class="nav nav-pills nav-pills-rose">
+          <li class="active">
+            <a href="#pill1" data-toggle="tab">Profile</a>
+          </li>
+          <li>
+            <a href="#pill2" data-toggle="tab">Edit profile</a>
+          </li>
+        </ul>
+    <!-- nav-1 -->
+        <div class="tab-content">
+          <div class="tab-pane" id="pill2">
+            <div class="col-md-10 col-md-offset-1">
+              <div class="card">
+                <div class="card-header card-header-icon" data-background-color="rose">
+                  <i class="material-icons">perm_identity</i>
+                </div>
+                <div class="card-content">
+                  <h4 class="card-title">Edit Profile -
+                      <small class="category">Complete your profile</small>
+                  </h4>
+                  <form (ngSubmit)="updateUser(myForm)" #myForm="ngForm">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="first-name-input" class="control-label">Fist Name</label>
+                          <input id="first-name-input" type="text" [(ngModel)]="formFirstName" name="formFirstName" class="form-control" value="{{ user.firstName }}" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="last-name-input" class="control-label">Last Name</label>
+                          <input id="last-name-input" type="text" [(ngModel)]="formLastName" name="formLastName" class="form-control" value="{{ user.lastName }}" required>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="email-input">Email address</label>
+                          <input id="email-input" type="email" [(ngModel)]="formEmail" name="formEmail" class="form-control" value="{{ user.email }}">
+                        </div>
+                      </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="dob-input">Date of Birth</label>
+                                <input id="dob-input" type="date" [(ngModel)]="formDob" name="formDob" class="form-control" value="{{ user.dob | date:'MM/dd/yyyy' }}">
+                            </div>
+                        </div>
 
 
                                         </div>
@@ -114,16 +116,17 @@
                                                   <input id="profession-input" type="text" [(ngModel)]="formProfession" name="formProfession" class="form-control" value="{{ user.profession }}">
                                               </div>
                                           </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-group">
                                                   <label>Gender</label>
                                                   <div style="display:inline" class="radio" *ngFor="let gender of gender">
                                                     <label for="gender-input">
                                                       <input id="gender-input" type="radio" [(ngModel)]="user.gender" name="formGender" value="{{ user.gender }}">
+                                                      {{ gender.display }}
                                                     </label>
                                                   </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="row">
@@ -158,29 +161,19 @@
                 <!-- end nav-1 -->
                       <div class="tab-pane active" id="pill1">
                         <div class="prof-pane">
-                        <ul class="undot">
-                          <li><span><i class="material-icons">email</i></span><span>{{ user.email }}</span></li>
-                          <li><span><i class="material-icons">favorite</i></span><span>"{{ user.fav }}"</span></li>
-                          <li><span><i class="material-icons">cake</i></span><span>{{ user.dob | date:'MM/dd/yyyy' }}</span>
-                              <span><i class="material-icons">play_for_work</i></span><span>{{ user.profession }}</span>
-                          </li>
-                          <li><span><i class="material-icons">label</i></span><span>{{ user.about }}</span></li>
+                        <ul>
+                          <li><span><i class="material-icons">email</i></span><a href="mailto:{{user.email}}" class="user-info">{{ user.email }}</a></li>
+                          <li><span><i class="material-icons">favorite</i></span><span class="user-info"><i>"{{ user.fav }}"</i></span></li>
+                          <li><span><i class="material-icons">cake</i></span><span class="user-info">{{ user.dob | date:'MM/dd/yyyy' }}</span></li>
+                          <li><span><i class="material-icons">play_for_work</i></span><span class="user-info">{{ user.profession }}</span></li>
+                          <li><span><i class="material-icons">label</i></span><span class="user-info">{{ user.about }}</span></li>
                         </ul>
                         </div>
                       </div>
-                      <!-- <div class="tab-pane" id="pill3">
-                          Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
-                          <br />
-                          <br />Dynamically innovate resource-leveling customer service for state of the art customer service.
-                      </div> -->
                   </div>
               </div>
-
-
-
-
           </div>
-          </div>
+        </div>
 
 
           <!-- ************************************** -->

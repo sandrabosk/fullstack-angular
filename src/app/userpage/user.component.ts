@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { SessionService } from '../services/session.service';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
+
 
 
 @Component({
@@ -55,16 +57,18 @@ import 'rxjs/add/operator/toPromise';
 
     export class UserComponent implements OnInit{
 
+      baseUrl: string = environment.apiUrl;
+
       public user : Object = {};
       public updatedUser: Object = {};
       public firstName: String;
       public lastName: String;
       public email: String;
       public dob = new Date();
-      public gender = [
-          { value: 'f', display: 'Female' },
-          { value: 'm', display: 'Male' }
-        ];
+      // public gender = [
+      //     { value: 'f', display: 'Female' },
+      //     { value: 'm', display: 'Male' }
+      //   ];
       public profession: String;
       public fav: String;
       public about: String;
@@ -85,12 +89,12 @@ import 'rxjs/add/operator/toPromise';
         });
       }
       updateUser(formData){
-        console.log('formGender',formData.form.controls.formGender._value)
+        // console.log('formGender',formData.form.controls.formGender._value)
         this.firstName = formData.form.controls.formFirstName._value;
         this.lastName = formData.form.controls.formLastName._value;
         this.email = formData.form.controls.formEmail._value;
         this.dob = formData.form.controls.formDob._value;
-        this.gender = formData.form.controls.formGender._value;
+        // this.gender = formData.form.controls.formGender._value;
         this.fav = formData.form.controls.formFav._value;
         this.profession = formData.form.controls.formProfession._value;
         this.about = formData.form.controls.formAbout._value;
@@ -104,7 +108,7 @@ import 'rxjs/add/operator/toPromise';
           lastName: this.lastName,
           email: this.email,
           dob: this.dob,
-          gender: this.gender,
+          // gender: this.gender,
           profession: this.profession,
           fav: this.fav,
           about: this.about
@@ -129,9 +133,8 @@ import 'rxjs/add/operator/toPromise';
 
 
         console.log('FORM' , form);
-
         // this.uploader.uploadAll();
-         this.myHttp.post(`http://localhost:3000/api/uploadphoto`, form,  { withCredentials: true })
+         this.myHttp.post(`${this.baseUrl}/api/uploadphoto`, form,  { withCredentials: true })
           .toPromise()
           .then((apiResponse)=>{ console.log(apiResponse)});
       }

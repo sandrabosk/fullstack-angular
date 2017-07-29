@@ -105,4 +105,16 @@ export class NavbarComponent implements OnInit{
         // console.log(this.location);
         return this.location.prepareExternalUrl(this.location.path());
     }
+
+
+    logMeOut() {
+      this.mySession.logout()
+        .then(() => {
+            this.myRouter.navigate(['/']);
+            // this.isLoggedIn = false;
+        })
+        .catch(() => {});
+      }
+
+
 }

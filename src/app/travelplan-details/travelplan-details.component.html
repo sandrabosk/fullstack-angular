@@ -4,6 +4,8 @@
   }
 </style>
 
+<!-- ============================================================================= -->
+
 <div class="card bckgrdcol">
   <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
 
@@ -169,7 +171,7 @@
                                                     <div class="card-content">
                                                         <div class="form-group">
                                                             <label for="start-date-input"class="label-control">Start date:</label>
-                                                            <input id="start-date-input" type="date" [(ngModel)]="formStart" name="formStart" class="form-control" value="{{ travelplan.startDate }}"/>
+                                                            <input id="start-date-input" type="date" [(ngModel)]="formStart" name="formStart" class="form-control"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,4 +236,3 @@
         </div>
     </div>
 </div>
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuErDWxWud1Z7NLJgy0R5M2HmF6wlImcE&libraries=places" async defer></script> -->
