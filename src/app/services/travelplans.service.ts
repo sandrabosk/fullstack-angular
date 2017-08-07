@@ -47,8 +47,8 @@ import { environment } from '../../environments/environment';
     remove(id){
       console.log('=============================')
       return this.myHttp
-        .delete(`${this.baseUrl}/api/travelplans/${id}`,
-          { withCredentials: true }
+        .delete(`${this.baseUrl}/api/travelplans/${id}`
+          // { withCredentials: true }
         )
         .toPromise()
         .then(apiResponse => apiResponse.json());

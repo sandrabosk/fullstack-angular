@@ -6,6 +6,7 @@ import { TravelPlansComponent } from './travel-plans/travel-plans.component';
 import { NewTravelplanComponent } from './new-travelplan/new-travelplan.component';
 import { TravelplanDetailsComponent } from './travelplan-details/travelplan-details.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
+import { CustomPlansComponent } from './custom-plans/custom-plans.component'
 
 NewTravelplanComponent
 export const AppRoutes: Routes = [
@@ -42,6 +43,10 @@ export const AppRoutes: Routes = [
     {
       path:'travelplans/:id/addpeople',
       component: AddPeopleComponent
+    },
+    {
+      path:'customplans',
+      component: CustomPlansComponent
     },
     {
         path: 'components',

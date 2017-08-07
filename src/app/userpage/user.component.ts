@@ -116,7 +116,7 @@ import { environment } from '../../environments/environment';
         console.log('updated user:' , this.updatedUser )
         this.mySession.update(this.updatedUser)
           .then(()=>{
-            this.myRouter.navigate(['/']);
+            this.myRouter.navigate(['/dashboard']);
           })
           .catch(()=>{})
       }

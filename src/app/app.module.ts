@@ -4,7 +4,7 @@ import { MapsRoutes } from './maps/maps.routing';
 import { FullScreenMapsComponent } from './maps/fullscreenmap/fullscreenmap.component';
 import { GoogleMapsComponent } from './maps/googlemaps/googlemaps.component';
 import { VectorMapsComponent } from './maps/vectormaps/vectormaps.component';
-
+// import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { MapsComponent } from './maps/maps.component';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,6 +33,7 @@ import { AddPeopleComponent } from './add-people/add-people.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { FullscreenmapComponent } from './travelplan-details/fullscreenmap/fullscreenmap.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { CustomPlansComponent } from './custom-plans/custom-plans.component';
 @NgModule({
     imports:      [
         BrowserModule,
@@ -62,12 +63,14 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
         GoogleMapsComponent,
         MapsComponent,
         VectorMapsComponent,
-        CapitalizePipe
+        CapitalizePipe,
+        CustomPlansComponent
     ],
     providers: [
       SessionService,
       TravelplansService,
-      CustomPlansService
+      CustomPlansService,
+      // {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap:    [ AppComponent ]

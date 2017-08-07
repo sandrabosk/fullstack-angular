@@ -1,8 +1,6 @@
-<h2> Travel plans </h2>
-
 <div class="error" *ngIf="errorMessage"> {{ errorMessage }} </div>
 
-<div>
+<div style="margin-top:120px;" >
     <div class="col-lg-4 col-md-6" *ngFor="let oneTravelplan of travelplans">
         <div class="card card-product">
             <div class="card-image" data-header-animation="true">
@@ -34,13 +32,71 @@
             </div>
         </div>
     </div>
+
     <div class="col-lg-4 col-md-6">
-      <div class="card card-product">
-        <div class="card-image" data-header-animation="true">
-          <a href="#">
-            <img class="img" src="../assets/img/card-3.jpeg">
-          </a>
+        <div class="card card-product">
+            <div class="card-image" data-header-animation="true">
+                <a href="#">
+                    <img class="img" src="../assets/img/blog01.jpg">
+                </a>
+            </div>
+            <div class="card-content">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                        <i class="material-icons">build</i> Fix Header!
+                    </button>
+                    <a href="#" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">
+                        <i class="material-icons">art_track</i>
+                    </a>
+                    <button type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">
+                        <i class="material-icons">edit</i>
+                    </button>
+                </div>
+                <h4 class="card-title">Getaway!</h4>
+                <div class="card-description">
+                    08.08.2017 - 08.18.2017
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="stats pull-right">
+                  <p class="category"><i class="material-icons">place</i> Vancouver, Canada</p>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card card-product">
+            <div class="card-image" data-header-animation="true">
+                <a href="#">
+                    <img class="img" src="../assets/img/card-1.jpeg">
+                </a>
+            </div>
+            <div class="card-content">
+                <div class="card-actions">
+                    <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                        <i class="material-icons">build</i> Fix Header!
+                    </button>
+                    <a href="#" type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View">
+                        <i class="material-icons">art_track</i>
+                    </a>
+                    <button type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit">
+                        <i class="material-icons">edit</i>
+                    </button>
+                </div>
+                <h4 class="card-title">Some Nature Please!</h4>
+                <div class="card-description">
+                    12.12.2017 - 12.20.2017
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="stats pull-right">
+                  <p class="category"><i class="material-icons">place</i> Rhine, Switzerland</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>

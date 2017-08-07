@@ -67,7 +67,7 @@ export class TravelplanDetailsComponent implements OnInit {
     this.myTravelplansService.remove(this.travelplan['_id'])
       .then(()=>{
         console.log('=============================')
-        this.myRouter.navigate(['/']);
+        this.myRouter.navigate(['/dashboard']);
       })
       .catch((err)=>{
         this.errorMessage = 'There has been an error so this travel plan is not deleted.'

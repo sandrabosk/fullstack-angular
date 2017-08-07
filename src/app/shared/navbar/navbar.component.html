@@ -1,3 +1,15 @@
+<style media="screen">
+.logout-btn {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+}
+</style>
+
+
 <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container-fluid">
         <div class="navbar-minimize">
@@ -17,18 +29,8 @@
         <div class="collapse navbar-collapse">
             <div *ngIf="isMobileMenu()">
                 <ul class="nav navbar-nav navbar-right">
-                    <button (click)="logMeOut()" name="button">Log Out</button>
+                    <button class="logout-btn" (click)="logMeOut()" name="button"><span style="color:#808080;"><strong>Log Out</strong></span></button>
                 </ul>
-                <!-- <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group form-search is-empty">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="material-input"></span>
-                    </div>
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                        <i class="material-icons">search</i>
-                        <div class="ripple-container"></div>
-                    </button>
-                </form> -->
             </div>
         </div>
     </div>
